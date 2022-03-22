@@ -1,15 +1,11 @@
-import { View, Text } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack"
+import { NavigationContainer } from '@react-navigation/native'
+import Movies from './src/screens/Movies'
 
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
-  );
+    <NavigationContainer>
+      <Movies />
+    </NavigationContainer>
+  )
 }
