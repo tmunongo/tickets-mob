@@ -3,5 +3,10 @@
     "description": "a mobile, ticket reservation app for android",
     "slug": "tickets-mobile",
     "version": "0.1.0",
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "expo": {
+        "packagerOpts": {
+            "sourceExts": ["cjs"]
+        }
+    }
 }

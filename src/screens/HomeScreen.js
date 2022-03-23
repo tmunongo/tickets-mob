@@ -1,32 +1,31 @@
+import { useQuery } from '@apollo/client'
 import React from 'react'
-import { 
-  View, 
-  Screen, 
-  Text, 
-  Button, 
-  StyleSheet, 
-  Image,
-  ImageBackground, 
-  ScrollView,
-  Dimensions 
-} from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import CardCarousel from '../components/CardCarousel'
 import MovieFeed from '../components/MovieFeed'
+import { GET_MOVIES } from '../gql/query'
+import Loading from '../components/Loading'
 
-const HomeScreen = ({ navigation, route }) => (
-  <ScrollView style={styles.base}>
+const HomeScreen = (props) => {
+  const { loading, error, data } = useQuery(GET_MOVIES)
 
-    <View style={styles.search}>
-      <Text style={styles.text}> Search Box Here </Text>
-    </View>
+  if (loading) return <Loading />
+  if (error) return <Text>Error loading movies + {error.message}</Text>
 
-    <CardCarousel />
-    <MovieFeed />
-    {/* <View style={styles.feed}>
-      <Text> Everything else </Text>
-    </View> */}
-  </ScrollView>
-)
+  return (
+    <ScrollView style={styles.base}>
+      <View style={styles.search}>
+        <Text style={styles.text}> Search Box Here </Text>
+      </View>
+      <CardCarousel />
+      <MovieFeed movies={data} navigation={props.navigation} />
+    </ScrollView>
+  )
+}
+
+HomeScreen.navigationOptions = {
+  title: 'HomeScreen',
+}
 
 export default HomeScreen
 
@@ -37,10 +36,7 @@ const styles = StyleSheet.create({
   featured: {
     marginTop: 40,
     paddingHorizontal: 0,
-    flex: 1
-    //alignItems: 'center',
-    // flexDirection: 'row',
-    // justifyContent: "space-between",
+    flex: 1,
   },
   feed: {
     backgroundColor: 'white',
@@ -55,12 +51,12 @@ const styles = StyleSheet.create({
   },
   items3: {
     backgroundColor: 'gold',
-    flex: 1
+    flex: 1,
   },
   poster: {
     flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center"
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   search: {
     height: 50,
@@ -70,7 +66,6 @@ const styles = StyleSheet.create({
     color: 'bisque',
     alignSelf: 'center',
     fontSize: 20,
-    
   },
   title: {
     padding: 20,
