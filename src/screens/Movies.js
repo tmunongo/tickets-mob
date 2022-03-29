@@ -1,32 +1,47 @@
-import React from 'react';
-import { Button, Text, View, StyleSheet } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './HomeScreen';
-import TheaterScreen from './TheaterScreen';
-//import Me from './MeScreen'
+import React from 'react'
+import { Button, Text, View, StyleSheet } from 'react-native'
+import { createStackNavigator } from '@react-navigation/stack'
+import HomeScreen from './HomeScreen'
+import locations from './locations'
+import MovieScreen from './Movie'
 
-const Root = createStackNavigator();
+const MovieStack = createStackNavigator()
 
-const Screen2 = ({ navigation, route }) => (
-  <View style={styles.screen}>
-    <Text style={styles.title}>Screen 2</Text>
-    <Button
-      title="Go back"
-      onPress={() => {
-        navigation.pop();
-      }}
-    />
-  </View>
-);
-
-export default function Movie() {
+export default function MoviesScreen() {
   return (
-    <Root.Navigator>
-      <Root.Screen name="Home" component={HomeScreen} />
-      <Root.Screen name="Screen2" component={Screen2} />
-    </Root.Navigator>
-  );
+    <MovieStack.Navigator>
+      <MovieStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <MovieStack.Screen
+        name="Locations"
+        component={locations}
+        options={{ headerShown: false }}
+      />
+      <MovieStack.Screen
+        name="Movie"
+        component={MovieScreen}
+        options={{ headerShown: false }}
+      />
+    </MovieStack.Navigator>
+  )
 }
+
+// export default function Movie() {
+//   return (
+//     <HomeScreen />
+//      <Root.Navigator>
+//        <Root.Screen
+//          name="Home"
+//          component={HomeScreen}
+//          options={{ headerShown: false }}
+//        />
+//        <Root.Screen name="Screen2" component={Screen2} />
+//      </Root.Navigator>
+//   )
+// }
 
 const styles = StyleSheet.create({
   screen: {
@@ -37,4 +52,4 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 42,
   },
-});
+})

@@ -17,7 +17,12 @@ const TheaterScreen = (props) => {
   const { loading, error, data } = useQuery(GET_THEATERS)
 
   if (loading) return <Loading />
-  if (error) return <Text>Error loading theaters</Text>
+  if (error)
+    return (
+      <View style={styles.container}>
+        <Text>Error loading theaters + {error.message}</Text>
+      </View>
+    )
   return (
     <View style={styles.container}>
       <FlatList
@@ -30,7 +35,7 @@ const TheaterScreen = (props) => {
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              props.navigation.navigate('Theater', {
+              props.navigation.navigate('Catalog', {
                 id: item.id,
               })
             }

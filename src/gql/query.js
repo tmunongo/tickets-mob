@@ -103,4 +103,15 @@ const GET_LOCATIONS = gql`
   }
 `
 
-export { GET_MOVIES, GET_MOVIE, GET_THEATERS, GET_LOCATIONS }
+const GET_CATALOG = gql`
+  query Catalog($theaterId: ID!) {
+    catalog(theaterId: $theaterId) {
+      id
+      title
+      year
+      poster
+    }
+  }
+`
+
+export { GET_MOVIES, GET_MOVIE, GET_THEATERS, GET_LOCATIONS, GET_CATALOG }

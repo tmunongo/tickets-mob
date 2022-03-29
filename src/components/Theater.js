@@ -3,6 +3,7 @@ import React from 'react'
 import Constants from 'expo-constants'
 
 const Movie = ({ theater }) => {
+  //console.log(theater)
   return (
     <ScrollView style={styles.feed}>
       <Text style={styles.title}>{theater.username}</Text>

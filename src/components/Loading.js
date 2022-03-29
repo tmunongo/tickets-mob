@@ -4,7 +4,7 @@ import React from 'react'
 const Loading = () => {
   return (
     <View style={styles.wrap}>
-      <ActivityIndicator size="large" />
+      <ActivityIndicator size="small" />
     </View>
   )
 }

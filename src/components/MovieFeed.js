@@ -54,7 +54,6 @@ const MovieFeed = (props) => {
         horizontal={false}
         numColumns={3}
         style={styles.container}
-        contentContainerStyle={{ justifyContent: 'space-around' }}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
@@ -64,11 +63,11 @@ const MovieFeed = (props) => {
             }
           >
             <ScrollView style={styles.feed}>
-              <Movie movie={item} />
-              {/* <Image style={styles.poster} source={item.poster} />
+              {/* <Movie movie={item} /> */}
+              <Image style={styles.poster} source={{ uri: item.poster }} />
               <Text style={{ color: 'white', alignSelf: 'center' }}>
                 {item.title}
-              </Text> */}
+              </Text>
             </ScrollView>
           </TouchableOpacity>
         )}

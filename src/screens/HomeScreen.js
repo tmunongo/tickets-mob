@@ -5,6 +5,7 @@ import CardCarousel from '../components/CardCarousel'
 import MovieFeed from '../components/MovieFeed'
 import { GET_MOVIES } from '../gql/query'
 import Loading from '../components/Loading'
+import Constants from 'expo-constants'
 
 const HomeScreen = (props) => {
   const { loading, error, data } = useQuery(GET_MOVIES)
@@ -32,6 +33,7 @@ export default HomeScreen
 const styles = StyleSheet.create({
   base: {
     backgroundColor: '#525252',
+    top: Constants.statusBarHeight,
   },
   featured: {
     marginTop: 40,
@@ -40,18 +42,6 @@ const styles = StyleSheet.create({
   },
   feed: {
     backgroundColor: 'white',
-  },
-  items: {
-    flex: 1,
-    backgroundColor: 'blue',
-  },
-  items2: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  items3: {
-    backgroundColor: 'gold',
-    flex: 1,
   },
   poster: {
     flex: 1,
