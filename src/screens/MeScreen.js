@@ -1,12 +1,16 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
+import * as SecureStore from 'expo-secure-store'
+import { AuthContext } from '../components/context'
 
 const MeScreen = (props) => {
+  const { signOut } = React.useContext(AuthContext)
+
   return (
     <View style={styles.container}>
       <Text>Me</Text>
-      <Button title="Sign Out" />
+      <Button title="Sign Out" onPress={signOut} />
     </View>
   )
 }

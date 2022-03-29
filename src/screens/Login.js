@@ -2,21 +2,22 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
 import * as SecureStore from 'expo-secure-store'
+import { AuthContext } from '../components/context'
 
 const Login = (props) => {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const login = () => {
-    SecureStore.setItemAsync('token', 'abc')
-  }
+  // const login = () => {
+  //   SecureStore.setItemAsync('userToken', 'abc')
+  // }
 
   // const storeToken = () => {
   //   SecureStore.setItemAsync('token', 'abc').then(
   //     props.navigation.
   //   )
   // }
-  // const { signIn } = React.useContext(AuthContext)
+  const { signIn } = React.useContext(AuthContext)
 
   return (
     <View style={styles.container}>
@@ -31,7 +32,7 @@ const Login = (props) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Login" onPress={login} />
+      <Button title="Login" onPress={signIn} />
     </View>
   )
 }

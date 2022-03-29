@@ -1,5 +1,5 @@
 import { Text, StyleSheet, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Screens from './screens'
 import getEnvVars from '../config'
 const { apiURI } = getEnvVars()
