@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as SecureStore from 'expo-secure-store'
 import { Button, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Movies from './Movies'
+import AuthLoading from './AuthLoading'
 import MovieScreen from './Movie'
-import locations from './locations'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import TheaterScreen from './TheaterScreen'
 import MeScreen from './MeScreen'
 import { Ionicons } from '@expo/vector-icons'
@@ -15,7 +15,8 @@ import Loading from '../components/Loading'
 import MyOrdersScreen from './MyOrdersScreen'
 import MyTicketsScreen from './MyTicketsScreen'
 import Authentication from './Authentication'
-import { AuthContext } from '../components/context'
+import { AuthContext, useAuthentication } from '../components/Context'
+import { Choose } from 'babel-plugin-jsx-control-statements'
 
 const TheaterStack = createStackNavigator()
 
@@ -54,96 +55,54 @@ const Tab = createBottomTabNavigator()
 const AuthStack = createStackNavigator()
 
 export default function Main() {
-  const initialLoginState = {
+  // const authentication = useAuthentication()
+  // const [hasUser, sethasUser] = useState(authentication.hasUser)
+  const [isLoading, setLoading] = useState(initialState)
+
+  const initialState = {
+    hasUser: false,
     isLoading: true,
-    userName: null,
-    userToken: null,
   }
 
   const loginReducer = (prevState, action) => {
     switch (action.type) {
-      case 'RETRIEVE_TOKEN':
+      case 'USER': {
         return {
           ...prevState,
-          userToken: action.token,
-          isLoading: false,
+          hasUser: true,
         }
-      case 'LOGIN':
+      }
+      case 'NO_USER': {
         return {
           ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false,
+          hasUser: false,
         }
-      case 'LOGOUT':
+      }
+      case 'CHECK_USER': {
         return {
           ...prevState,
-          userName: null,
-          userToken: null,
           isLoading: false,
         }
-      case 'REGISTER':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false,
-        }
+      }
     }
   }
 
-  const [loginState, dispatch] = React.useReducer(
-    loginReducer,
-    initialLoginState
-  )
-  const authContext = React.useMemo(
-    () => ({
-      signIn: async (foundUser) => {
-        const userToken = String(foundUser.userToken)
-        const userName = foundUser.username
+  const [loginState, dispatch] = React.useReducer(loginReducer, initialState)
 
-        try {
-          await SecureStore.setItemAsync('userToken', userToken)
-        } catch (error) {
-          console.log(error)
-        }
-        dispatch({ type: 'LOGIN', id: userName, token: userToken })
-      },
-
-      signOut: async () => {
-        try {
-          await SecureStore.deleteItemAsync('userToken')
-        } catch (error) {
-          console.log(error)
-        }
-        dispatch({ type: 'LOGOUT' })
-      },
-      signUp: async () => {
-        try {
-          await SecureStore.setItemAsync('userToken', userToken)
-        } catch (error) {
-          console.log(error)
-        }
-      },
-    }),
-    []
-  )
-  useEffect(() => {
-    setTimeout(async () => {
-      let userToken
-      userToken = null
-      try {
-        userToken = await SecureStore.getItemAsync('userToken')
-      } catch (error) {
-        console.log(error)
-      }
-      dispatch({ type: 'RETRIEVE_TOKEN', token: userToken })
-    }, 1000)
-  }, [])
-
-  console.log(loginState.userToken)
+  const authContext = React.useMemo(() => ({
+    aUser: async (userToken) => {
+      dispatch({ type: 'USER', token: userToken })
+    },
+    noUser: async () => {
+      dispatch({ type: 'NO_USER' })
+    },
+    checkUser: async () => {
+      dispatch({ type: 'CHECK_USER' })
+    },
+  }))
 
   return (
+    // <AuthContext.Consumer>
     <AuthContext.Provider value={authContext}>
       <Tab.Navigator
         barStyle={{ backgroundColor: 'black' }}
@@ -168,8 +127,8 @@ export default function Main() {
         }}
       >
         {loginState.isLoading ? (
-          <AuthStack.Screen name="Loading" component={Loading} />
-        ) : loginState.userToken ? (
+          <AuthStack.Screen name="Loading" component={AuthLoading} />
+        ) : loginState.hasUser ? (
           <>
             <Tab.Screen name="Home" component={MoviesScreen} />
             <Tab.Screen name="Theaters" component={Theaters} />

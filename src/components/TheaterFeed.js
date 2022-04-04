@@ -26,7 +26,7 @@ const TheaterFeed = (props) => {
             onPress={() =>
               props.navigation.navigate('Movie', {
                 id: props.movieId,
-                theaterId: item.id,
+                theater: item,
               })
             }
           >

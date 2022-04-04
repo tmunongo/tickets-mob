@@ -18,7 +18,7 @@ const HomeScreen = (props) => {
       <View style={styles.search}>
         <Text style={styles.text}> Search Box Here </Text>
       </View>
-      <CardCarousel />
+      <CardCarousel movies={data} navigation={props.navigation} />
       <MovieFeed movies={data} navigation={props.navigation} />
     </ScrollView>
   )

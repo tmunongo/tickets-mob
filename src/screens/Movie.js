@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Dimensions, Text, View, StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 import Movie from '../components/Movie'
 import { useQuery } from '@apollo/client'
@@ -16,14 +16,14 @@ function MovieHome(props) {
       <Movie
         movie={props.data.movie}
         navigation={props.navigation}
-        locationId={props.theaterId}
+        location={props.theater}
       />
     </View>
   )
 }
 
 const MovieScreen = ({ route, navigation }) => {
-  const { id, theaterId } = route.params
+  const { id, theater } = route.params
   const { data, loading, error } = useQuery(GET_MOVIE, {
     variables: { movieId: id },
   })
@@ -34,22 +34,7 @@ const MovieScreen = ({ route, navigation }) => {
         <Text>{error.message}</Text>
       </View>
     )
-  return (
-    // <Tab.Navigator>
-    //   <Tab.Screen
-    //     name="Home"
-    //     component={MovieHome}
-    //     initialParams={{
-    //       data: { data },
-    //       navigation: { navigation },
-    //       theaterId: { theaterId },
-    //     }}
-    //   />
-    //   <Tab.Screen name="Reviews" component={Reviews} />
-    // </Tab.Navigator>
-    <MovieHome data={data} navigation={navigation} theaterId={theaterId} />
-    //</View>
-  )
+  return <MovieHome data={data} navigation={navigation} theater={theater} />
 }
 
 export default MovieScreen

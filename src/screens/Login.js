@@ -2,38 +2,30 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
 import * as SecureStore from 'expo-secure-store'
-import { AuthContext } from '../components/context'
+import { AuthContext, useAuthentication } from '../components/Context'
+import { gql, useMutation } from '@apollo/client'
+import Loading from '../components/Loading'
+import UserForm from '../components/UserForm'
 
 const Login = (props) => {
-  const [username, setUsername] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const { aUser } = React.useContext(AuthContext)
 
-  // const login = () => {
-  //   SecureStore.setItemAsync('userToken', 'abc')
-  // }
+  const SIGNIN_USER = gql`
+    mutation signIn($email: String!, $password: String!) {
+      signIn(email: $email, password: $password)
+    }
+  `
+  const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+    onCompleted: (data) => {
+      SecureStore.setItemAsync('userToken', data.signIn)
+      aUser(data.signIn)
+    },
+  })
 
-  // const storeToken = () => {
-  //   SecureStore.setItemAsync('token', 'abc').then(
-  //     props.navigation.
-  //   )
-  // }
-  const { signIn } = React.useContext(AuthContext)
-
+  if (loading) return <Loading />
+  if (error) alert(error.message)
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
-      <Button title="Login" onPress={signIn} />
-    </View>
+    <UserForm action={signIn} formType="signIn" navigation={props.navigation} />
   )
 }
 

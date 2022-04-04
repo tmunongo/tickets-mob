@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   StyleSheet,
   Text,
   ScrollView,
@@ -8,21 +9,20 @@ import {
 } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
+import OrderForm from './OrderForm'
 
 const Movie = (params) => {
-  const poster = { uri: params.movie.poster }
   return (
-    <ScrollView style={styles.feed}>
+    <View style={styles.feed}>
       <ImageBackground
         resizeMode="cover"
-        source={poster}
+        source={{ uri: params.movie.poster }}
         style={styles.background}
       >
-        <Image style={styles.poster} source={poster} />
+        <Image style={styles.poster} source={{ uri: params.movie.poster }} />
+        <OrderForm movie={params.movie} location={params.location} />
       </ImageBackground>
-      <Text style={styles.title}>{params.movie.title}</Text>
-      <Text style={styles.title}>Showing at: {params.locationId}</Text>
-    </ScrollView>
+    </View>
   )
 }
 
@@ -34,9 +34,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
+    backgroundColor: 'grey',
     justifyContent: 'center',
     flex: 1,
-    height: 300,
+    height: Dimensions.get('window').height / 2,
   },
   poster: {
     height: 170,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   feed: {
-    height: 400,
+    height: Dimensions.get('window').height - 50,
     display: 'flex',
   },
   title: {

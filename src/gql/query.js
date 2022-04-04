@@ -114,4 +114,22 @@ const GET_CATALOG = gql`
   }
 `
 
-export { GET_MOVIES, GET_MOVIE, GET_THEATERS, GET_LOCATIONS, GET_CATALOG }
+const CURRENT_USER = gql`
+  query CurrentUser {
+    currentUser {
+      username
+      email
+      password
+      role
+    }
+  }
+`
+
+export {
+  GET_MOVIES,
+  GET_MOVIE,
+  GET_THEATERS,
+  GET_LOCATIONS,
+  GET_CATALOG,
+  CURRENT_USER,
+}
