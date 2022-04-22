@@ -125,11 +125,78 @@ const CURRENT_USER = gql`
   }
 `
 
+const MY_ORDERS = gql`
+  query MyOrders {
+    myOrders {
+      id
+      orderedBy {
+        username
+      }
+      quality
+      screeningDay
+      screeningTime
+      location {
+        username
+      }
+      toWatch {
+        title
+        year
+      }
+    }
+  }
+`
+
+const SESSION_CHECK = gql`
+  query session(
+    $movieId: ID!
+    $locationId: ID!
+    $quality: String!
+    $screeningTime: String!
+    $screeningDay: Date!
+  ) {
+    session(
+      movieId: $movieId
+      locationId: $locationId
+      quality: $quality
+      screeningTime: $screeningTime
+      screeningDay: $screeningDay
+    ) {
+      id
+      location {
+        username
+        id
+      }
+      movie {
+        title
+        id
+      }
+      screeningDay
+      screeningTime
+      quality
+      seatsAvailable
+      seatMap
+    }
+  }
+`
+
+const RETRIEVE_INTENT = gql`
+  query Query {
+    paymentIntent {
+      amount
+      currency
+      payment_method_types
+    }
+  }
+`
+
 export {
+  CURRENT_USER,
   GET_MOVIES,
   GET_MOVIE,
   GET_THEATERS,
   GET_LOCATIONS,
   GET_CATALOG,
-  CURRENT_USER,
+  MY_ORDERS,
+  RETRIEVE_INTENT,
+  SESSION_CHECK,
 }

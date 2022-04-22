@@ -50,7 +50,7 @@ const MovieFeed = (props) => {
     <View>
       <FlatList
         data={props.movies.MovieFeed.movies}
-        keyExtractor={({ id }) => id.toString()}
+        keyExtractor={(id) => id.toString()}
         horizontal={false}
         numColumns={3}
         style={styles.container}
@@ -65,7 +65,9 @@ const MovieFeed = (props) => {
             <ScrollView style={styles.feed}>
               {/* <Movie movie={item} /> */}
               <Image style={styles.poster} source={{ uri: item.poster }} />
-              <Text style={{ color: 'white', alignSelf: 'center' }}>
+              <Text
+                style={{ color: 'white', alignSelf: 'center', marginLeft: 25 }}
+              >
                 {item.title}
               </Text>
             </ScrollView>
@@ -87,6 +89,8 @@ const styles = StyleSheet.create({
     height: 170,
     width: 100,
     alignSelf: 'center',
+    borderRadius: 10,
+    marginLeft: 25,
   },
   feed: {
     height: 200,

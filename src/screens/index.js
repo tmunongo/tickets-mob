@@ -16,7 +16,7 @@ import MyOrdersScreen from './MyOrdersScreen'
 import MyTicketsScreen from './MyTicketsScreen'
 import Authentication from './Authentication'
 import { AuthContext, useAuthentication } from '../components/Context'
-import { Choose } from 'babel-plugin-jsx-control-statements'
+import OrderScreen from './OrderScreen'
 
 const TheaterStack = createStackNavigator()
 
@@ -43,8 +43,17 @@ function Me() {
   return (
     <MeStack.Navigator>
       <MeStack.Screen name="Profile" component={MeScreen} />
-      <MeStack.Screen name="My Orders" component={MyOrdersScreen} />
-      <MeStack.Screen name="My Tickets" component={MyTicketsScreen} />
+      <MeStack.Screen name="MyOrders" component={MyOrdersScreen} />
+      <MeStack.Screen
+        name="MyTickets"
+        component={MyTicketsScreen}
+        options={{ headerShown: false }}
+      />
+      <MeStack.Screen
+        name="Order"
+        component={OrderScreen}
+        // options={{ headerShown: false }}
+      />
     </MeStack.Navigator>
   )
   //return <MeScreen />

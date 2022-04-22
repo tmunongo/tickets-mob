@@ -23,13 +23,17 @@ const MeScreen = (props) => {
       alert(error.message)
     }
   }
-  if (loading) <Loading />
+  if (loading) return <Loading />
   if (error) console.log(error.message)
   return (
     <View style={styles.container}>
       <Text>Me</Text>
       <Button title="Me" onPress={whoAmI} />
       <Button title="Sign Out" onPress={signOut} />
+      <Button
+        title="My Orders"
+        onPress={(e) => props.navigation.push('MyOrders')}
+      />
     </View>
   )
 }

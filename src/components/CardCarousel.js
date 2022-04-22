@@ -74,7 +74,7 @@ export default function CardCarousel(props) {
                 source={{ uri: item.poster }}
                 style={styles.poster}
               />
-              <Text>{item.title}</Text>
+              {/* <Text>{item.title}</Text> */}
             </Animated.View>
           )
         })}

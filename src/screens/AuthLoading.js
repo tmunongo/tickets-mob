@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useEffect } from 'react'
 import Constants from 'expo-constants'
 import Loading from '../components/Loading'
-import * as SecureStore from 'expo-secure-store'
-import { AuthContext, useAuthentication } from '../components/Context'
+import { AuthContext } from '../components/Context'
 
 const AuthLoading = (props) => {
   // const authentication = useAuthentication()
