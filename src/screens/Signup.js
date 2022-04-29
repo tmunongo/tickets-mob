@@ -24,7 +24,14 @@ const Signup = (props) => {
 
   //   if (loading) return <Loading />
   if (error) alert(error.message)
-  return <UserForm action={signUp} formType="signUp" props={props} />
+  return (
+    <UserForm
+      action={signUp}
+      formType="signUp"
+      props={props}
+      navigation={props.navigation}
+    />
+  )
 }
 
 export default Signup

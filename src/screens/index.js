@@ -131,8 +131,8 @@ export default function Main() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'dodgerblue',
-          inactiveTintColor: 'gray',
+          activeTintColor: '#10AA15',
+          inactiveTintColor: 'black',
         }}
       >
         {loginState.isLoading ? (

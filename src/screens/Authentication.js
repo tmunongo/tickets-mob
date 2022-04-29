@@ -10,8 +10,18 @@ const AuthStack = createStackNavigator()
 const Authentication = (props) => {
   return (
     <AuthStack.Navigator>
-      <AuthStack.Screen name="SignIn" component={Login} props={props} />
-      <AuthStack.Screen name="SignUp" component={Signup} props={props} />
+      <AuthStack.Screen
+        name="SignIn"
+        component={Login}
+        props={props}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="SignUp"
+        component={Signup}
+        props={props}
+        options={{ headerShown: false }}
+      />
       <AuthStack.Screen name="AuthLoading" component={AuthLoading} />
     </AuthStack.Navigator>
   )

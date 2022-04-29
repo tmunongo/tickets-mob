@@ -10,41 +10,6 @@ import {
 import React from 'react'
 import Movie from './Movie'
 
-const movies = [
-  { id: 1, title: 'Movie 1', poster: require('../assets/bvs.jpg') },
-  {
-    id: 2,
-    title: 'Movie 2',
-    poster: require('../assets/BladeRunner2049.jpg'),
-  },
-  {
-    id: 3,
-    title: 'Movie 3',
-    poster: require('../assets/dune-haleyturnbull.jpg'),
-  },
-  {
-    id: 4,
-    title: 'Movie 4',
-    poster: require('../assets/interstellar-poster.jpg'),
-  },
-  {
-    id: 5,
-    title: 'Movie 5',
-    poster: require('../assets/watchmen-theatrical-poster-big.jpg'),
-  },
-  { id: 6, title: 'Movie 6', poster: require('../assets/endgame.jpeg') },
-  {
-    id: 7,
-    title: 'Movie 7',
-    poster: require('../assets/silence-cover.jpg'),
-  },
-  {
-    id: 8,
-    title: 'Movie 8',
-    poster: require('../assets/superman-returns.jpg'),
-  },
-]
-
 const MovieFeed = (props) => {
   return (
     <View>

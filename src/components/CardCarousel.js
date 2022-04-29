@@ -4,7 +4,7 @@ import {
   ImageBackground,
   Image,
   View,
-  Text,
+  TouchableOpacity,
   StyleSheet,
   ScrollView,
 } from 'react-native'
@@ -59,23 +59,32 @@ export default function CardCarousel(props) {
             outputRange: [0.5, 1, 0.5],
           })
           return (
-            <Animated.View
-              style={{
-                width: ITEM_WIDTH,
-                height: ITEM_HEIGHT,
-                flex: 1,
-                marginLeft: index === 0 ? OFFSET : undefined,
-                marginRight: index === cards.length - 1 ? OFFSET : undefined,
-                opacity: opacity,
-                transform: [{ scale: translate }],
-              }}
+            <TouchableOpacity
+              onPress={() =>
+                props.navigation.navigate('Locations', {
+                  id: item.id,
+                })
+              }
             >
-              <ImageBackground
-                source={{ uri: item.poster }}
-                style={styles.poster}
-              />
-              {/* <Text>{item.title}</Text> */}
-            </Animated.View>
+              <Animated.View
+                key={item.id}
+                style={{
+                  width: ITEM_WIDTH,
+                  height: ITEM_HEIGHT,
+                  flex: 1,
+                  marginLeft: index === 0 ? OFFSET : undefined,
+                  marginRight: index === cards.length - 1 ? OFFSET : undefined,
+                  opacity: opacity,
+                  transform: [{ scale: translate }],
+                }}
+              >
+                <ImageBackground
+                  source={{ uri: item.poster }}
+                  style={styles.poster}
+                />
+                {/* <Text>{item.title}</Text> */}
+              </Animated.View>
+            </TouchableOpacity>
           )
         })}
       </ScrollView>

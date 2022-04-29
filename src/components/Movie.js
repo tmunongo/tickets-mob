@@ -85,14 +85,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    backgroundColor: 'white',
+    backgroundColor: '#323333',
     justifyContent: 'center',
     flex: 1,
-    height: Dimensions.get('window').height / 2,
+    height: Dimensions.get('window').height / 1.8,
+    paddingTop: 5,
   },
   poster: {
-    height: 170,
-    width: 100,
+    height: 220,
+    width: 130,
     alignSelf: 'center',
   },
   feed: {
@@ -100,8 +101,8 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   title: {
-    marginLeft: 25,
-    color: 'black',
     alignSelf: 'center',
+    color: 'black',
+    marginLeft: 25,
   },
 })

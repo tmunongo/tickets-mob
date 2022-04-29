@@ -13,6 +13,7 @@ const Order = ({ order }) => {
   return (
     <ScrollView style={styles.feed}>
       <Text style={styles.title}>{order.toWatch.title}</Text>
+      <Text style={styles.subtitle}>{order.toWatch.rating}</Text>
       <Text style={styles.subtitle}>{date}</Text>
       <Text style={styles.subtitle}>{order.screeningTime}</Text>
       <Text style={styles.subtitle}>{order.quality}</Text>

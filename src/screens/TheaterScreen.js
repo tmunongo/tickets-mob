@@ -25,6 +25,8 @@ const TheaterScreen = (props) => {
     )
   return (
     <View style={styles.container}>
+      <Text style={styles.header}> Locations 🎦 </Text>
+
       <FlatList
         data={data.theaters}
         keyExtractor={({ id }) => id.toString()}
@@ -61,9 +63,21 @@ const styles = StyleSheet.create({
     height: 100,
     overflow: 'hidden',
     marginBottom: 5,
-    backgroundColor: 'black',
     borderBottomColor: 'grey',
     borderBottomWidth: 3,
+  },
+  header: {
+    borderTopColor: 'white',
+    borderTopWidth: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    flex: 0,
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingBottom: 5,
+    paddingTop: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize',
   },
   separator: {
     height: 1,

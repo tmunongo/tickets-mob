@@ -49,16 +49,15 @@ const OrderForm = (params) => {
     <View style={styles.container}>
       {/* <Separator /> */}
       <Text style={styles.title}>
-        Your selected movie is:{' '}
-        <Text style={styles.strong}>{params.movie.title}</Text>
+        Selected Movie: <Text style={styles.strong}>{params.movie.title}</Text>
       </Text>
       <Separator />
       <Text style={styles.title}>
-        Showing at:{' '}
-        <Text style={styles.strong}>{params.location.username}</Text>
+        Showing At 📌:
+        <Text style={styles.strong}>{params.location.fullName}</Text>
       </Text>
       <Separator />
-      <Text style={styles.title}>Screening Times: </Text>
+      <Text style={styles.title}>Screening Times ⏲️ </Text>
       <ScrollView
         bounces={false}
         contentContainerStyle={styles.timeScroller}
@@ -69,7 +68,7 @@ const OrderForm = (params) => {
         {times.map((item, index) => {
           return (
             <TouchableOpacity
-              color={'black'}
+              color={'white'}
               //   title={item.time}
               onPress={(e) => setTime(item.time)}
               style={styles.button}
@@ -80,7 +79,7 @@ const OrderForm = (params) => {
         })}
       </ScrollView>
       <Separator />
-      <Text style={styles.title}>Screening Day: </Text>
+      <Text style={styles.title}>Screening Day 📆 </Text>
       <DatePicker
         date={date}
         onChange={(date) => setDate(date)}
@@ -88,12 +87,13 @@ const OrderForm = (params) => {
           <Entypo
             name="chevron-right"
             size={30}
-            color="black"
-            borderColor="black"
+            color="#10AA15"
+            borderColor="white"
           />
         }
       />
-      <Text style={styles.title}>Quality: </Text>
+      <Separator />
+      <Text style={styles.title}>Quality 📽️ </Text>
       <ScrollView
         bounces={false}
         contentContainerStyle={styles.timeScroller}
@@ -119,11 +119,14 @@ const OrderForm = (params) => {
           )
         })}
       </ScrollView>
-      <Button
+      <Separator />
+
+      <TouchableOpacity
         style={styles.orderButton}
-        title="Order Ticket"
         onPress={(e) => handleSubmit(e)}
-      />
+      >
+        <Text style={styles.orderButtonText}>Order Ticket</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -132,47 +135,76 @@ export default OrderForm
 
 const styles = StyleSheet.create({
   button: {
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 50,
+    borderColor: '#FFFFFF',
+    borderWidth: 1,
+    borderRadius: 30,
     padding: 5,
     marginBottom: 5,
     marginLeft: 25,
     marginTop: 5,
   },
   buttonPressed: {
-    backgroundColor: 'dodgerblue',
+    backgroundColor: '#196C1B',
     borderWidth: 2,
-    borderRadius: 50,
+    borderRadius: 30,
     marginBottom: 5,
     marginLeft: 15,
     marginTop: 5,
-    padding: 5,
+    padding: 10,
   },
   buttonText: {
+    color: 'white',
     fontWeight: 'bold',
   },
   container: {
-    backgroundColor: 'white',
-    marginHorizontal: 15,
+    backgroundColor: 'black',
     borderRadius: 25,
+    marginHorizontal: 15,
+    paddingTop: 10,
   },
   orderButton: {
+    alignItems: 'center',
+    backgroundColor: '#196C1B',
+    borderRadius: 10,
+    height: 30,
     paddingTop: 5,
+    textAlign: 'center',
+    width: 360,
   },
-  title: {
-    color: 'black',
-    marginLeft: 15,
-    fontSize: 20,
-  },
-  titleNoBorder: {
-    color: 'black',
-    fontSize: 20,
-    paddingBottom: 3,
+  orderButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   strong: {
+    color: 'yellow',
     fontWeight: 'bold',
+    fontStyle: 'normal',
     textTransform: 'capitalize',
+  },
+  timeScroller: {
+    alignItems: 'center',
+  },
+  title: {
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: '#10AA15', //10AA15
+    borderRadius: 15,
+    color: 'white',
+    flex: 0,
+    fontFamily: 'monospace',
+    fontSize: 14,
+    height: 40,
+    justifyContent: 'center',
+    marginLeft: 15,
+    paddingTop: 10,
+    textAlign: 'center',
+    width: 300,
+  },
+  titleNoBorder: {
+    color: 'white',
+    fontSize: 20,
+    paddingBottom: 3,
   },
   times: {
     marginTop: 5,

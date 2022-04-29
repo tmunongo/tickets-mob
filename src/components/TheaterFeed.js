@@ -8,15 +8,10 @@ import {
 import React from 'react'
 import Theater from './Theater'
 
-const theaters = [
-  { id: 1, name: 'Suning 苏宁' },
-  { id: 2, name: 'Wanda 万达' },
-  { id: 3, name: 'Pagani' },
-]
-
 const TheaterFeed = (props) => {
   return (
     <View>
+      <Text style={styles.header}> Locations 🏠 </Text>
       <FlatList
         data={props.locations.locations}
         keyExtractor={({ id }) => id.toString()}
@@ -40,4 +35,18 @@ const TheaterFeed = (props) => {
 
 export default TheaterFeed
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  header: {
+    borderTopColor: 'white',
+    borderTopWidth: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    flex: 0,
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingBottom: 5,
+    paddingTop: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
+})

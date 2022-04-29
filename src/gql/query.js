@@ -8,6 +8,8 @@ const GET_MOVIES = gql`
         title
         year
         poster
+        synopsis
+        rating
         submittedBy {
           id
           username
@@ -41,6 +43,8 @@ const GET_MOVIE = gql`
       title
       year
       poster
+      synopsis
+      rating
       submittedBy {
         username
         id
@@ -84,6 +88,9 @@ const GET_THEATERS = gql`
       id
       email
       role
+      fullName
+      phoneNumber
+      address
       catalogue {
         id
       }
@@ -99,6 +106,9 @@ const GET_LOCATIONS = gql`
     locations(movieId: $movieId) {
       username
       id
+      fullName
+      phoneNumber
+      address
     }
   }
 `

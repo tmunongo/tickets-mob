@@ -1,12 +1,13 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
 import {
-  View,
-  Text,
+  Image,
   RefreshControl,
   StyleSheet,
-  Image,
   ScrollView,
+  Text,
+  TextInput,
+  View,
 } from 'react-native'
 import CardCarousel from '../components/CardCarousel'
 import MovieFeed from '../components/MovieFeed'
@@ -16,12 +17,17 @@ import Constants from 'expo-constants'
 import Separator from '../components/Separator'
 
 const HomeScreen = (props) => {
+  const [search, setSearch] = React.useState('')
   const [refreshing, setRefreshing] = React.useState(false)
   const { loading, error, data, refetch } = useQuery(GET_MOVIES)
 
   if (loading) return <Loading />
-  if (error) return <Text>Error loading movies + {error.message}</Text>
-
+  if (error)
+    return (
+      <View>
+        <Text>Error loading movies + {error.message}</Text>
+      </View>
+    )
   return (
     <ScrollView
       style={styles.base}
@@ -30,7 +36,14 @@ const HomeScreen = (props) => {
       }
     >
       <View style={styles.search}>
-        <Text style={styles.text}> Search Box Here </Text>
+        <TextInput
+          clearButtonMode="always"
+          maxLength={15}
+          style={styles.searchBar}
+          value={search}
+          onChangeText={(text) => setSearch(text)}
+          placeholder="Search"
+        />
       </View>
       <CardCarousel movies={data} navigation={props.navigation} />
       <Separator />
@@ -65,7 +78,14 @@ const styles = StyleSheet.create({
   },
   search: {
     height: 50,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
+  },
+  searchBar: {
+    borderRadius: 10,
+    height: 60,
+    marginLeft: 40,
+    marginRight: 40,
+    paddingLeft: 10,
   },
   text: {
     color: 'bisque',

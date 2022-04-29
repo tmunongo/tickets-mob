@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {
   Button,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -24,9 +26,11 @@ const UserForm = (props) => {
       },
     })
   }
-
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}
+    >
       <Text style={styles.label}>Email</Text>
       <TextInput
         onChangeText={(text) => setEmail(text)}
@@ -34,44 +38,55 @@ const UserForm = (props) => {
         textContentType="emailAddress"
         autoFocus={true}
         autoCapitalize="none"
+        placeholder={'Email Address'}
         style={styles.box}
       />
       {props.formType === 'signUp' && (
         <View>
           <Text style={styles.label}>Username</Text>
           <TextInput
-            onChangeText={(text) => setUsername(text)}
-            value={username}
-            textContentType="username"
             autoCapitalize="none"
+            onChangeText={(text) => setUsername(text)}
+            placeholder={'Username'}
+            textContentType="username"
             style={styles.box}
+            value={username}
           />
         </View>
       )}
       <Text style={styles.label}>Password</Text>
       <TextInput
         onChangeText={(text) => setPassword(text)}
-        value={password}
-        textContentType="password"
+        placeholder={'Password'}
         secureTextEntry={true}
         style={styles.box}
+        textContentType="password"
+        value={password}
       />
-      <Button
-        title="Submit"
+      <TouchableOpacity
         onPress={handleSubmit}
         navigation={props.navigation}
         style={styles.button}
-      />
-      {props.formType !== 'signUp' && (
+      >
+        <Text style={styles.buttonText}>Submit</Text>
+      </TouchableOpacity>
+      {props.formType === 'signIn' && (
         <>
           <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
-            <Text style={{ paddingTop: 5 }}>
+            <Text style={{ paddingTop: 5, marginTop: 10 }}>
               No Account? Touch this to fix that 😊
             </Text>
           </TouchableOpacity>
         </>
       )}
-    </View>
+      {props.formType === 'signUp' && (
+        <>
+          <TouchableOpacity onPress={() => props.navigation.navigate('SignIn')}>
+            <Text style={{ paddingTop: 5, marginTop: 10 }}>Sign In 👤</Text>
+          </TouchableOpacity>
+        </>
+      )}
+    </KeyboardAvoidingView>
   )
 }
 
@@ -79,9 +94,15 @@ export default UserForm
 
 const styles = StyleSheet.create({
   container: {
-    top: Constants.statusBarHeight,
-    justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'black',
+    borderRadius: 30,
+    borderWidth: 2,
+    flex: 1,
+    justifyContent: 'center',
+    margin: 30,
+    marginBottom: 160,
+    marginTop: 100,
   },
   label: {
     fontSize: 18,
@@ -90,10 +111,22 @@ const styles = StyleSheet.create({
   box: {
     borderWidth: 1,
     borderColor: 'black',
+    borderRadius: 10,
     width: 240,
     marginBottom: 10,
+    paddingLeft: 10,
   },
   button: {
-    paddingTop: 5,
+    alignItems: 'center',
+    backgroundColor: '#7FDEDB',
+    borderColor: 'black',
+    borderRadius: 30,
+    borderWidth: 2,
+    height: 30,
+    padding: 5,
+    width: 80,
+  },
+  buttonText: {
+    fontWeight: 'bold',
   },
 })
