@@ -4,6 +4,7 @@ import Constants from 'expo-constants'
 import { useQuery } from '@apollo/client'
 import { GET_CATALOG } from '../gql/query'
 import Loading from '../components/Loading'
+import MovieFeed from '../components/MovieFeed'
 
 const CatalogScreen = ({ route, navigation }) => {
   const { id, other } = route.params
@@ -19,7 +20,7 @@ const CatalogScreen = ({ route, navigation }) => {
     )
   return (
     <View style={styles.container}>
-      <Text>The movies showing: {data.catalog[0].title} </Text>
+      <MovieFeed movies={data} navigation={navigation} />
     </View>
   )
 }

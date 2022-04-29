@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     top: Constants.statusBarHeight,
   },
   feed: {
-    height: 100,
     overflow: 'hidden',
     marginBottom: 5,
     borderBottomColor: 'grey',
@@ -72,6 +71,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'white',
     borderBottomWidth: 2,
     flex: 0,
+    fontFamily: 'monospace',
     fontSize: 22,
     fontWeight: 'bold',
     paddingBottom: 5,

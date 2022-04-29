@@ -41,11 +41,6 @@ export default function MoviesScreen() {
         component={SeatSelector}
         options={{ headerShown: false }}
       />
-      {/* <MovieStack.Screen
-        name="SessionLoading"
-        component={SessionLoading}
-        options={{ headerShown: true }}
-      /> */}
       <MovieStack.Screen
         name="ReservationCreator"
         component={ReservationCreator}

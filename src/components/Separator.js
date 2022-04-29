@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   separator: {
     alignItems: 'baseline',
     marginVertical: 8,
-    borderBottomColor: 'white',
+    borderBottomColor: 'gray',
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginLeft: 15,
     marginRight: 15,

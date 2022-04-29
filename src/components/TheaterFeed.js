@@ -36,12 +36,16 @@ const TheaterFeed = (props) => {
 export default TheaterFeed
 
 const styles = StyleSheet.create({
+  feed: {
+    height: 120,
+  },
   header: {
     borderTopColor: 'white',
     borderTopWidth: 2,
     borderBottomColor: 'white',
     borderBottomWidth: 2,
     flex: 0,
+    fontFamily: 'monospace',
     fontSize: 22,
     fontWeight: 'bold',
     paddingBottom: 5,

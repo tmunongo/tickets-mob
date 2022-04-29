@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import * as SecureStore from 'expo-secure-store'
 import { Button, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AuthLoading from './AuthLoading'
 import MovieScreen from './Movie'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import TheaterScreen from './TheaterScreen'
 import MeScreen from './MeScreen'
 import { Ionicons } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
 import CatalogScreen from './Catalog'
 import MoviesScreen from './Movies'
-import Loading from '../components/Loading'
 import MyOrdersScreen from './MyOrdersScreen'
 import MyTicketsScreen from './MyTicketsScreen'
 import Authentication from './Authentication'
-import { AuthContext, useAuthentication } from '../components/Context'
+import { AuthContext } from '../components/Context'
 import OrderScreen from './OrderScreen'
+import PaymentScreen from './PaymentScreen'
+import SeatSelector from './SeatSelector'
+import SessionCreator from './SessionCreator'
+import Reservation from './Reservation'
+import ReservationCreator from './ReservationCreator'
+import SessionUpdater from './SessionUpdater'
 
 const TheaterStack = createStackNavigator()
 
@@ -31,6 +34,41 @@ function Theaters() {
       <TheaterStack.Screen
         name="Catalog"
         component={CatalogScreen}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="Movie"
+        component={MovieScreen}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="SeatSelector"
+        component={SeatSelector}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="ReservationCreator"
+        component={ReservationCreator}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="Reservation"
+        component={Reservation}
+        options={{ headerShown: false }}
+      />
+      <TheaterStack.Screen
+        name="SessionCreator"
+        component={SessionCreator}
+        options={{ headerShown: true }}
+      />
+      <TheaterStack.Screen
+        name="SessionUpdater"
+        component={SessionUpdater}
         options={{ headerShown: false }}
       />
     </TheaterStack.Navigator>

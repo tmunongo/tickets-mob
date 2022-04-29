@@ -120,6 +120,7 @@ const GET_CATALOG = gql`
       title
       year
       poster
+      synopsis
     }
   }
 `
@@ -131,6 +132,8 @@ const CURRENT_USER = gql`
       email
       password
       role
+      fullName
+      address
     }
   }
 `
@@ -147,6 +150,8 @@ const MY_ORDERS = gql`
       screeningTime
       location {
         username
+        fullName
+        address
       }
       toWatch {
         title
@@ -175,6 +180,8 @@ const SESSION_CHECK = gql`
       location {
         username
         id
+        fullName
+        address
       }
       movie {
         title

@@ -1,5 +1,6 @@
 import {
   FlatList,
+  Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -47,15 +48,16 @@ const SeatSelector = (props) => {
   )
   function alertIndex(seat) {
     if (!mySeats.includes(seat)) {
-      if (selectedSeats.includes(seat)) {
-        alert('This seat is already selected')
-      }
-      if (mySelected >= 2) {
-        alert('You can not select more than 2 seats')
+      if (!selectedSeats.includes(seat)) {
+        if (mySeats.length >= 2) {
+          alert('You can not select more than 2 seats')
+        } else {
+          updateMySeats((arr) => [...arr, seat])
+          updateMySelected(mySelected + 1)
+          setTotal(total + 10)
+        }
       } else {
-        updateMySeats((arr) => [...arr, seat])
-        updateMySelected(mySelected + 1)
-        setTotal(total + 10)
+        alert('This seat is already selected')
       }
     } else {
       setTotal(total - 10)
@@ -71,12 +73,15 @@ const SeatSelector = (props) => {
       <TouchableOpacity onPress={() => alertIndex(data)}>
         <View
           style={
-            selectedSeats.includes(data) || mySeats.includes(data)
+            mySeats.includes(data)
               ? styles.btnSelected
+              : selectedSeats.includes(data)
+              ? styles.preSelected
               : styles.btn
           }
         >
           <Text style={styles.btnText}>{data}</Text>
+          <Text style={{ textAlign: 'center' }}>💺</Text>
         </View>
       </TouchableOpacity>
     )
@@ -85,13 +90,13 @@ const SeatSelector = (props) => {
     <View style={styles.container}>
       <Separator />
       <Text style={styles.heading}>
-        <Text style={{ textDecorationLine: 'underline' }}>Movie:</Text>{' '}
+        <Text style={{ color: '#AAA642' }}>Movie </Text>{' '}
         {orderDetails.movie.title} {orderDetails.movie.year}
       </Text>
       <Separator />
       <Text style={styles.subHeading}>
-        <Text style={{ textDecorationLine: 'underline' }}>Location:</Text>{' '}
-        {orderDetails.location.username}
+        <Text style={{ color: '#AAA642' }}>Location </Text>{' '}
+        {orderDetails.location.fullName}
       </Text>
       <Separator />
       {/* <Text>Location: {orderDetails.location.address}</Text> */}
@@ -100,19 +105,21 @@ const SeatSelector = (props) => {
         {orderDetails.quality}
       </Text>
       <Separator />
-      <Text style={styles.info}>Select your seat below:</Text>
+      <Text style={styles.info}>Select your seat below</Text>
       <Screen width={380} height={50} style={{ justifyContent: 'center' }} />
       <Text
         style={{
-          justifyContent: 'center',
-          textAlign: 'center',
-          marginBottom: 15,
+          color: 'white',
+          fontFamily: 'monospace',
           fontWeight: 'bold',
+          justifyContent: 'center',
+          marginBottom: 15,
+          textAlign: 'center',
         }}
       >
         SCREEN
       </Text>
-      <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+      <Table borderStyle={{ borderWidth: 2, borderColor: '#10AA15' }}>
         {/* <Rows data={orderDetails.seatMap} textStyle={styles.text} /> */}
         {orderDetails.seatMap.map((rowData, index) => (
           <TableWrapper key={index} style={styles.row}>
@@ -171,23 +178,42 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   buttonText: {
+    fontFamily: 'monospace',
     fontSize: 20,
     fontWeight: 'bold',
+    flex: 0,
   },
   btn: {
     height: 40,
-    backgroundColor: 'dodgerblue',
+    backgroundColor: 'white',
+    borderColor: '#10AA15',
+    borderRadius: 10,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlignVertical: 'center',
   },
   btnSelected: {
     height: 40,
-    backgroundColor: 'green',
+    backgroundColor: 'dodgerblue',
+    borderColor: '#10AA15',
+    borderRadius: 10,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlignVertical: 'center',
   },
   btnText: {
+    fontFamily: 'monospace',
+    fontWeight: 'bold',
     textAlign: 'center',
   },
   container: {
+    backgroundColor: 'black',
+    fontFamily: 'monospace',
+    height: Dimensions.get('screen').height,
+    padding: 10,
     top: Constants.statusBarHeight,
-    margin: 10,
   },
   feed: {},
   footer: {
@@ -196,30 +222,60 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   heading: {
+    textAlign: 'center',
+    // borderColor: '#10AA15',
+    // borderTopColor: '#10AA15',
+    borderRadius: 5,
+    borderWidth: 2,
+    color: 'white',
+    fontFamily: 'monospace',
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 22,
+    paddingLeft: 10,
   },
   info: {
+    color: 'white',
+    fontFamily: 'monospace',
     fontSize: 18,
     fontWeight: 'bold',
+    paddingLeft: 10,
+    textAlign: 'center',
+  },
+  preSelected: {
+    height: 40,
+    backgroundColor: 'red',
+    borderColor: '#10AA15',
+    borderRadius: 10,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlignVertical: 'center',
   },
   row: {
+    borderRadius: 5,
+    backgroundColor: 'black',
     flexDirection: 'row',
-    backgroundColor: '#FFF1C1',
+    padding: 5,
   },
   subHeading: {
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'monospace',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
+    paddingLeft: 10,
     textTransform: 'capitalize',
   },
   text: { justifyContent: 'center' },
 
   totalCost: {
     alignItems: 'center',
-    borderColor: 'dodgerblue',
+    borderColor: '#10AA15',
     borderRadius: 10,
     borderWidth: 3,
+    color: 'white',
     flex: 0,
+    fontFamily: 'monospace',
     fontSize: 24,
     fontWeight: 'bold',
     justifyContent: 'center',

@@ -30,7 +30,35 @@ const OrderForm = (params) => {
   const [time, setTime] = useState('')
   const [date, setDate] = useState(new Date().toLocaleDateString(undefined))
   const [quality, setQuality] = useState('')
+  const [selectedTime, updateSelectedTime] = useState([])
+  const [selectedQuality, updateSelectedQuality] = useState([])
 
+  const handleTimePress = (value) => {
+    if (selectedTime.length > 0) {
+      if (selectedTime.includes(value)) {
+        updateSelectedTime((arr) => arr.filter((item, _) => item !== value))
+      } else {
+        selectedTime.pop()
+        setTime(value)
+      }
+    } else {
+      updateSelectedTime((arr) => [...arr, value])
+      setTime(value)
+    }
+  }
+  const handleQualityPress = (value) => {
+    if (selectedQuality.length > 0) {
+      if (selectedQuality.includes(value)) {
+        updateSelectedQuality((arr) => arr.filter((item, _) => item !== value))
+      } else {
+        selectedQuality.pop()
+        setQuality(value)
+      }
+    } else {
+      updateSelectedQuality((arr) => [...arr, value])
+      setQuality(value)
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log(params.location.id, params.movie.id, time, date, quality)
@@ -70,8 +98,12 @@ const OrderForm = (params) => {
             <TouchableOpacity
               color={'white'}
               //   title={item.time}
-              onPress={(e) => setTime(item.time)}
-              style={styles.button}
+              onPress={(e) => handleTimePress(item.time)}
+              style={
+                selectedTime.includes(item.time)
+                  ? styles.buttonPressed
+                  : styles.button
+              }
             >
               <Text style={styles.buttonText}>{item.time}</Text>
             </TouchableOpacity>
@@ -81,6 +113,7 @@ const OrderForm = (params) => {
       <Separator />
       <Text style={styles.title}>Screening Day 📆 </Text>
       <DatePicker
+        borderColor="#10AA15"
         date={date}
         onChange={(date) => setDate(date)}
         icon={
@@ -107,12 +140,13 @@ const OrderForm = (params) => {
               color={'black'}
               //   title={item.time}
               onPress={(e) => {
-                setQuality(item.q)
-                if (!item.pS) item.pS = true
-                else item.pS = false
-                //console.log(pressStatus, pressCount)
+                handleQualityPress(item.q)
               }}
-              style={item.pS ? styles.button : styles.buttonPressed}
+              style={
+                selectedQuality.includes(item.q)
+                  ? styles.buttonPressed
+                  : styles.button
+              }
             >
               <Text style={styles.buttonText}>{item.q}</Text>
             </TouchableOpacity>
@@ -158,16 +192,17 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'black',
-    borderRadius: 25,
+    borderRadius: 10,
     marginHorizontal: 15,
     paddingTop: 10,
   },
   orderButton: {
     alignItems: 'center',
-    backgroundColor: '#196C1B',
+    backgroundColor: 'dodgerblue',
     borderRadius: 10,
     height: 30,
     paddingTop: 5,
+    marginBottom: 10,
     textAlign: 'center',
     width: 360,
   },
