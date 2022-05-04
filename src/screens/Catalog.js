@@ -1,4 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
 import { useQuery } from '@apollo/client'
@@ -6,21 +15,49 @@ import { GET_CATALOG } from '../gql/query'
 import Loading from '../components/Loading'
 import MovieFeed from '../components/MovieFeed'
 
-const CatalogScreen = ({ route, navigation }) => {
-  const { id, other } = route.params
-  const { loading, error, data } = useQuery(GET_CATALOG, {
-    variables: { theaterId: id },
-  })
-  if (loading) return <Loading />
-  if (error)
-    return (
-      <View style={styles.container}>
-        <Text>{error.message}</Text>
-      </View>
-    )
+const CatalogScreen = (props) => {
+  console.log('cata: ', props)
+  const { id, other } = props.route.params
+  // const { loading, error, data } = useQuery(GET_CATALOG, {
+  //   variables: { theaterId: id },
+  // })
+  // if (loading) return <Loading />
+  // if (error)
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text>{error.message}</Text>
+  //     </View>
+  //   )
   return (
     <View style={styles.container}>
-      <MovieFeed movies={data} navigation={navigation} />
+      <FlatList
+        data={props.catalog}
+        keyExtractor={(id) => id.toString()}
+        horizontal={false}
+        numColumns={3}
+        style={styles.list}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() =>
+              props.navigation.navigate('Movie', {
+                movie: item.id,
+                id,
+              })
+            }
+          >
+            <ScrollView style={styles.feed}>
+              {/* <Movie movie={item} /> */}
+              <Image style={styles.poster} source={{ uri: item.poster }} />
+              <Text
+                style={{ color: 'white', alignSelf: 'center', marginLeft: 25 }}
+              >
+                {item.title}
+              </Text>
+            </ScrollView>
+          </TouchableOpacity>
+        )}
+      />
+      {/* <MovieFeed movies={data.catalogue} navigation={navigation} /> */}
     </View>
   )
 }
@@ -29,6 +66,22 @@ export default CatalogScreen
 
 const styles = StyleSheet.create({
   container: {
+    height: Dimensions.get('screen').height,
     top: Constants.statusBarHeight,
+  },
+  list: {
+    backgroundColor: 'black',
+    marginBottom: 0,
+  },
+  feed: {
+    height: 200,
+    display: 'flex',
+  },
+  poster: {
+    height: 170,
+    width: 100,
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginLeft: 25,
   },
 })

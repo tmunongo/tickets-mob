@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
 import * as SecureStore from 'expo-secure-store'
@@ -8,8 +15,10 @@ import { CURRENT_USER } from '../gql/query'
 import Loading from '../components/Loading'
 
 const MeScreen = (props) => {
+  const [refreshing, setRefreshing] = React.useState(false)
+
   const { noUser } = React.useContext(AuthContext)
-  const { data, loading, error } = useQuery(CURRENT_USER)
+  const { data, loading, error, refetch } = useQuery(CURRENT_USER)
 
   const signOut = () => {
     SecureStore.deleteItemAsync('userToken')
@@ -25,16 +34,42 @@ const MeScreen = (props) => {
   }
   if (loading) return <Loading />
   if (error) console.log(error.message)
+  console.log(data)
   return (
-    <View style={styles.container}>
-      <Text>Me</Text>
-      <Button title="Me" onPress={whoAmI} />
-      <Button title="Sign Out" onPress={signOut} />
-      <Button
-        title="My Orders"
-        onPress={(e) => props.navigation.push('MyOrders')}
-      />
-    </View>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={refetch} />
+      }
+      style={styles.container}
+    >
+      <Text style={styles.header}>Profile</Text>
+      <TouchableOpacity style={styles.button} onPress={whoAmI}>
+        <Text style={styles.buttonText}> 👤 Me</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={(e) =>
+          props.navigation.push('MyOrders', {
+            orders: data.currentUser.ordersMade,
+          })
+        }
+      >
+        <Text style={styles.buttonText}> 🛒 My Orders</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={(e) =>
+          props.navigation.push('MyTickets', {
+            reservations: data.currentUser.reservationsMade,
+          })
+        }
+      >
+        <Text style={styles.buttonText}> 🎟️ My Tickets</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={signOut}>
+        <Text style={styles.buttonText}> ⚠️ Sign Out</Text>
+      </TouchableOpacity>
+    </ScrollView>
   )
 }
 
@@ -45,7 +80,31 @@ MeScreen.navigationOptions = {
 export default MeScreen
 
 const styles = StyleSheet.create({
+  button: {
+    borderBottomColor: '#00AA15',
+    borderBottomWidth: 1,
+    flex: 0,
+    height: 50,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontFamily: 'monospace',
+  },
   container: {
-    // top: Constants.statusBarHeight,
+    top: Constants.statusBarHeight,
+  },
+  header: {
+    borderTopColor: 'white',
+    borderTopWidth: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    flex: 0,
+    fontFamily: 'monospace',
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingBottom: 5,
+    paddingTop: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize',
   },
 })

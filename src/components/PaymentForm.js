@@ -4,7 +4,6 @@ import { CardField } from '@stripe/stripe-react-native'
 import Constants from 'expo-constants'
 
 const PaymentForm = (props) => {
-  console.log('payment from props: ', props)
   const [cardDetails, setCardDetails] = useState()
 
   const handleSubmit = (e) => {

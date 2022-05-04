@@ -9,7 +9,6 @@ import React from 'react'
 
 const Reservation = (props) => {
   const [refreshing, setRefreshing] = React.useState(false)
-  console.log('res', props)
   return (
     <ScrollView
       refreshControl={

@@ -39,6 +39,7 @@ const TheaterScreen = (props) => {
             onPress={() =>
               props.navigation.navigate('Catalog', {
                 id: item.id,
+                catalog: item.catalogue,
               })
             }
           >

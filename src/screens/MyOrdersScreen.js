@@ -7,22 +7,16 @@ import { MY_ORDERS } from '../gql/query'
 import OrderFeed from '../components/OrderFeed'
 
 const MyOrdersScreen = (props) => {
-  const [refreshing, setRefreshing] = React.useState(false)
-  const { data, loading, error, refetch } = useQuery(MY_ORDERS)
-
-  if (loading) return <Loading />
-  if (error) alert(error.message)
   return (
-    <ScrollView
-      style={styles.container}
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={refetch} />
-      }
-    >
-      {data.myOrders.length === 0 ? (
+    <ScrollView style={styles.container}>
+      <Text style={styles.header}>My Orders</Text>
+      {props.route.params.orders.length === 0 ? (
         <Text>You have no orders yet</Text>
       ) : (
-        <OrderFeed orders={data} navigation={props.navigation} />
+        <OrderFeed
+          orders={props.route.params.orders}
+          navigation={props.navigation}
+        />
       )}
     </ScrollView>
   )
@@ -31,5 +25,21 @@ const MyOrdersScreen = (props) => {
 export default MyOrdersScreen
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    top: Constants.statusBarHeight,
+  },
+  header: {
+    borderTopColor: 'white',
+    borderTopWidth: 2,
+    borderBottomColor: 'white',
+    borderBottomWidth: 2,
+    flex: 0,
+    fontFamily: 'monospace',
+    fontSize: 22,
+    fontWeight: 'bold',
+    paddingBottom: 5,
+    paddingTop: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
 })

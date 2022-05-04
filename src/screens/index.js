@@ -80,8 +80,16 @@ const MeStack = createStackNavigator()
 function Me() {
   return (
     <MeStack.Navigator>
-      <MeStack.Screen name="Profile" component={MeScreen} />
-      <MeStack.Screen name="MyOrders" component={MyOrdersScreen} />
+      <MeStack.Screen
+        name="Profile"
+        component={MeScreen}
+        options={{ headerShown: false }}
+      />
+      <MeStack.Screen
+        name="MyOrders"
+        component={MyOrdersScreen}
+        options={{ headerShown: false }}
+      />
       <MeStack.Screen
         name="MyTickets"
         component={MyTicketsScreen}
@@ -90,7 +98,12 @@ function Me() {
       <MeStack.Screen
         name="Order"
         component={OrderScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
+      />
+      <MeStack.Screen
+        name="Reservation"
+        component={Reservation}
+        options={{ headerShown: false }}
       />
     </MeStack.Navigator>
   )

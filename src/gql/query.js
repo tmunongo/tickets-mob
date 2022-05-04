@@ -93,6 +93,10 @@ const GET_THEATERS = gql`
       address
       catalogue {
         id
+        title
+        year
+        poster
+        synopsis
       }
       myOrders {
         id
@@ -109,6 +113,13 @@ const GET_LOCATIONS = gql`
       fullName
       phoneNumber
       address
+      catalogue {
+        id
+        title
+        year
+        poster
+        synopsis
+      }
     }
   }
 `
@@ -134,6 +145,56 @@ const CURRENT_USER = gql`
       role
       fullName
       address
+      reservationsMade {
+        id
+        reservedBy {
+          username
+          email
+        }
+        seat
+        totalPrice
+        confirmationCode
+        sessionDetails {
+          location {
+            fullName
+            address
+            phoneNumber
+          }
+          screeningDay
+          screeningTime
+          quality
+          movie {
+            title
+            year
+            id
+          }
+        }
+      }
+      ordersMade {
+        id
+        toWatch {
+          id
+          title
+          year
+          poster
+          synopsis
+        }
+        location {
+          email
+          fullName
+          address
+          phoneNumber
+        }
+        screeningTime
+        screeningDay
+        quality
+        orderedBy {
+          username
+          email
+          fullName
+          phoneNumber
+        }
+      }
     }
   }
 `

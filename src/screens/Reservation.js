@@ -36,7 +36,7 @@ const Reservation = (props) => {
         Movie: {details.movie.title}, Year: {details.movie.year}
       </Text>
       <Separator />
-      <Text style={styles.label}>Location: {details.location.username}</Text>
+      <Text style={styles.label}>Location: {details.location.fullName}</Text>
       <Separator />
       <Text style={styles.label}>Quality: {details.quality}</Text>
       <Separator />

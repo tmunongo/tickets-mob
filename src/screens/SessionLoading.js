@@ -1,12 +1,10 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React, { useEffect } from 'react'
 import Loading from '../components/Loading'
 import gql, { useMutation, useQuery } from '@apollo/client'
-import { SessionContext } from '../components/Context'
 
 const SessionLoading = (props) => {
   const orderDetails = props.route.params.data.newOrder
-  console.log('session loading: ', props)
 
   function checkSession() {
     const { error, loading } = useQuery(
