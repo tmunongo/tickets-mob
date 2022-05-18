@@ -14,6 +14,8 @@ if (Constants.manifest.debuggerHost) {
 const ENV = {
   dev: {
     API_URI: `http://${localhost}:8080/tickets-api`,
+    STRIPE_PUBLISHABLE_KEY:
+      'pk_test_51IKDloF4MRVfci29tfbWsKJOVFVpnYjhk10CIK4I9yAj0Iw0a2uiUfXCmRbIIKwiAZeHX5U3YscMwcOKFwNKKHcB00ZcTiH5v7',
   },
   prod: {
     // update the API_URI value with your publicly deployed API address
