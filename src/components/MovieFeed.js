@@ -12,7 +12,7 @@ import Movie from './Movie'
 
 const MovieFeed = (props) => {
   return (
-    <View>
+    <View style={styles.base}>
       <FlatList
         data={props.movies.MovieFeed.movies}
         keyExtractor={(id) => id.toString()}
@@ -46,9 +46,12 @@ const MovieFeed = (props) => {
 export default MovieFeed
 
 const styles = StyleSheet.create({
+  base: {
+    paddingBottom: 20,
+  },
   container: {
-    marginBottom: 5,
     backgroundColor: 'black',
+    marginBottom: 5,
   },
   poster: {
     height: 170,

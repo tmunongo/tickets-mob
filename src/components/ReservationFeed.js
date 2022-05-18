@@ -20,7 +20,6 @@ function formatDate(unformatted) {
   return date
 }
 const ReservationFeed = (props) => {
-  console.log('res feed ', props)
   return (
     <View style={styles.container}>
       <FlatList
@@ -50,7 +49,7 @@ const ReservationFeed = (props) => {
                 Ticket for: {item.seat.length}
               </Text>
               <Text style={styles.itemText}>
-                Screening Day: {formatDate(item.screeningDay)}
+                Screening Day: {formatDate(item.sessionDetails.screeningDay)}
               </Text>
               <Text
                 style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
@@ -71,6 +70,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grey',
     height: Dimensions.get('screen').height - 105,
+    paddingBottom: 20,
   },
   feed: {
     backgroundColor: 'black',

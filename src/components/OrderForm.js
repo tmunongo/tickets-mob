@@ -169,10 +169,10 @@ export default OrderForm
 
 const styles = StyleSheet.create({
   button: {
-    borderColor: '#FFFFFF',
+    borderColor: '#10AA15',
     borderWidth: 1,
     borderRadius: 30,
-    padding: 5,
+    padding: 8,
     marginBottom: 5,
     marginLeft: 25,
     marginTop: 5,
@@ -192,24 +192,26 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: 'black',
-    borderRadius: 10,
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30,
+    // borderRadius: 30,
     marginHorizontal: 15,
     paddingTop: 10,
   },
   orderButton: {
-    alignItems: 'center',
-    backgroundColor: 'dodgerblue',
+    alignSelf: 'center',
+    backgroundColor: '#196C1B',
     borderRadius: 10,
     height: 30,
     paddingTop: 5,
     marginBottom: 10,
-    textAlign: 'center',
-    width: 360,
+    width: 180,
   },
   orderButtonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   strong: {
     color: 'yellow',
@@ -218,22 +220,18 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
   },
   timeScroller: {
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   title: {
     alignSelf: 'center',
-    borderWidth: 1,
     borderColor: '#10AA15', //10AA15
-    borderRadius: 15,
     color: 'white',
     flex: 0,
     fontFamily: 'monospace',
     fontSize: 14,
     height: 40,
-    justifyContent: 'center',
     marginLeft: 15,
     paddingTop: 10,
-    textAlign: 'center',
     width: 300,
   },
   titleNoBorder: {

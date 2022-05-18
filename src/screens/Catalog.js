@@ -10,28 +10,15 @@ import {
 } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
-import { useQuery } from '@apollo/client'
-import { GET_CATALOG } from '../gql/query'
-import Loading from '../components/Loading'
-import MovieFeed from '../components/MovieFeed'
 
 const CatalogScreen = (props) => {
   console.log('cata: ', props)
   const { id, other } = props.route.params
-  // const { loading, error, data } = useQuery(GET_CATALOG, {
-  //   variables: { theaterId: id },
-  // })
-  // if (loading) return <Loading />
-  // if (error)
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>{error.message}</Text>
-  //     </View>
-  //   )
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Catalog</Text>
       <FlatList
-        data={props.catalog}
+        data={props.route.params.catalog}
         keyExtractor={(id) => id.toString()}
         horizontal={false}
         numColumns={3}
@@ -40,8 +27,8 @@ const CatalogScreen = (props) => {
           <TouchableOpacity
             onPress={() =>
               props.navigation.navigate('Movie', {
-                movie: item.id,
-                id,
+                id: item.id,
+                theater: id,
               })
             }
           >
@@ -69,13 +56,30 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     top: Constants.statusBarHeight,
   },
-  list: {
-    backgroundColor: 'black',
-    marginBottom: 0,
-  },
   feed: {
     height: 200,
     display: 'flex',
+  },
+  header: {
+    backgroundColor: 'black',
+    borderTopColor: 'white',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+    color: 'white',
+    flex: 0,
+    fontFamily: 'monospace',
+    fontSize: 22,
+    fontWeight: 'bold',
+    padding: 5,
+    textAlign: 'center',
+    textTransform: 'capitalize',
+  },
+  list: {
+    backgroundColor: 'black',
+    borderColor: 'white',
+    borderBottomWidth: 2,
+    marginBottom: 0,
+    marginTop: 2,
   },
   poster: {
     height: 170,
