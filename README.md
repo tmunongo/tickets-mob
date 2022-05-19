@@ -1,5 +1,7 @@
 # Tickets! Please Movie Tickets
 
+![](home_page.gif)
+
 <p>
   <!-- iOS -->
   <a href="https://itunes.apple.com/app/apple-store/id982107779">
