@@ -16,7 +16,7 @@ const { STRIPE_PUBLISHABLE_KEY } = getEnvVars()
 // const [context] = React.useState(AuthContext)
 
 const link = new HttpLink({
-  uri: 'http://172.16.42.62:8080/tickets-api',
+  uri: 'http://192.168.1.102:8080/tickets-api',
 })
 
 const authLink = setContext(async (_, { headers }) => {
