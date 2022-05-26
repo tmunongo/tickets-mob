@@ -5,7 +5,6 @@ import { gql, useMutation } from '@apollo/client'
 import Reservation from '../components/Reservation'
 
 const SessionUpdater = (props) => {
-  // console.log('session updater: ', props)
   const reservation = props.route.params.data
 
   const UPDATE_SESSION = gql`

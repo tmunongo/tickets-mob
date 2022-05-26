@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   box: {
     borderWidth: 1,

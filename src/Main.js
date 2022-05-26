@@ -7,7 +7,6 @@ import {
   ApolloProvider,
   HttpLink,
 } from '@apollo/client'
-import { AuthContext, useAuthentication } from './components/Context'
 import { setContext } from '@apollo/client/link/context'
 import * as SecureStore from 'expo-secure-store'
 import { StripeProvider } from '@stripe/stripe-react-native'
@@ -16,7 +15,7 @@ const { STRIPE_PUBLISHABLE_KEY } = getEnvVars()
 // const [context] = React.useState(AuthContext)
 
 const link = new HttpLink({
-  uri: 'http://192.168.1.102:8080/tickets-api',
+  uri: 'http://192.168.1.105:8080/tickets-api',
 })
 
 const authLink = setContext(async (_, { headers }) => {

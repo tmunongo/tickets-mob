@@ -1,14 +1,16 @@
 import {
+  Dimensions,
+  FlatList,
+  Image,
   StyleSheet,
   ScrollView,
-  Image,
   Text,
-  View,
-  FlatList,
   TouchableOpacity,
+  View,
 } from 'react-native'
 import React from 'react'
 import Movie from './Movie'
+import { FlipInEasyX } from 'react-native-reanimated'
 
 const MovieFeed = (props) => {
   return (
@@ -18,7 +20,7 @@ const MovieFeed = (props) => {
         keyExtractor={(id) => id.toString()}
         horizontal={false}
         numColumns={3}
-        style={styles.container}
+        contentContainerStyle={styles.container}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
@@ -30,11 +32,32 @@ const MovieFeed = (props) => {
             <ScrollView style={styles.feed}>
               {/* <Movie movie={item} /> */}
               <Image style={styles.poster} source={{ uri: item.poster }} />
-              <Text
-                style={{ color: 'white', alignSelf: 'center', marginLeft: 25 }}
-              >
-                {item.title}
-              </Text>
+              <View style={styles.title}>
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'center',
+                    width: 80,
+                  }}
+                >
+                  {item.title}
+                </Text>
+                <Text
+                  style={[
+                    styles.rating,
+                    {
+                      color:
+                        item.rating === 'R'
+                          ? 'darkred'
+                          : item.rating === 'G'
+                          ? 'lime'
+                          : 'white',
+                    },
+                  ]}
+                >
+                  {item.rating}
+                </Text>
+              </View>
             </ScrollView>
           </TouchableOpacity>
         )}
@@ -47,21 +70,42 @@ export default MovieFeed
 
 const styles = StyleSheet.create({
   base: {
+    justifyContent: 'center',
     paddingBottom: 20,
   },
   container: {
+    alignItems: 'center',
     backgroundColor: 'black',
     marginBottom: 5,
+  },
+  feed: {
+    height: 200,
+    display: 'flex',
   },
   poster: {
     height: 170,
     width: 100,
     alignSelf: 'center',
     borderRadius: 10,
-    marginLeft: 25,
+    marginLeft: 10,
+    marginRight: 10,
   },
-  feed: {
-    height: 200,
+  rating: {
+    backgroundColor: 'grey',
+    borderRadius: 4,
+    fontSize: 14,
+    fontWeight: 'bold',
+    height: 20,
+    marginLeft: 5,
+    textAlign: 'center',
+    width: 20,
+  },
+  title: {
     display: 'flex',
+    flexDirection: 'row',
+    height: 'auto',
+    marginTop: 5,
+    marginBottom: 10,
+    justifyContent: 'space-around',
   },
 })

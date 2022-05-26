@@ -22,7 +22,6 @@ import {
 } from 'react-native-table-component'
 
 const SeatSelector = (props) => {
-  // console.log(props)
   let orderDetails = props.route.params.params
   //state for previously selected seats
   const [selectedSeats, updateSelectedSeats] = useState(
@@ -64,9 +63,6 @@ const SeatSelector = (props) => {
       updateMySeats((arr) => arr.filter((item, _) => item !== seat))
       updateMySelected(mySelected - 1)
     }
-    // mySeats.push(seat)
-    // console.log(mySeats)
-    // alert(`This is seat: ${seat}`)
   }
   const element = (data, index) => {
     return (

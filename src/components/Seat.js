@@ -2,7 +2,6 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const Seat = (props) => {
-  console.log(props)
   return (
     <View>
       <Text style={styles.seat}>{props.seat}</Text>

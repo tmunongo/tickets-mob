@@ -77,7 +77,22 @@ const OrderForm = (params) => {
     <View style={styles.container}>
       {/* <Separator /> */}
       <Text style={styles.title}>
-        Selected Movie: <Text style={styles.strong}>{params.movie.title}</Text>
+        Selected Movie: <Text style={styles.strong}>{params.movie.title}</Text>{' '}
+        <Text
+          style={[
+            styles.rating,
+            {
+              color:
+                params.movie.rating === 'R'
+                  ? 'darkred'
+                  : params.movie.rating === 'G'
+                  ? 'lime'
+                  : 'white',
+            },
+          ]}
+        >
+          {params.movie.rating}
+        </Text>
       </Text>
       <Separator />
       <Text style={styles.title}>
@@ -153,7 +168,6 @@ const OrderForm = (params) => {
           )
         })}
       </ScrollView>
-      <Separator />
 
       <TouchableOpacity
         style={styles.orderButton}
@@ -200,11 +214,12 @@ const styles = StyleSheet.create({
   },
   orderButton: {
     alignSelf: 'center',
-    backgroundColor: '#196C1B',
+    backgroundColor: '#D2691E',
     borderRadius: 10,
     height: 30,
     paddingTop: 5,
-    marginBottom: 10,
+    marginBottom: 5,
+    marginTop: 45,
     width: 180,
   },
   orderButtonText: {
@@ -212,6 +227,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  rating: {
+    backgroundColor: 'grey',
+    borderRadius: 4,
+    fontSize: 14,
+    fontWeight: 'bold',
+    height: 20,
+    marginLeft: 5,
+    textAlign: 'center',
+    width: 20,
   },
   strong: {
     color: 'yellow',
@@ -229,9 +254,8 @@ const styles = StyleSheet.create({
     flex: 0,
     fontFamily: 'monospace',
     fontSize: 14,
-    height: 40,
-    marginLeft: 15,
-    paddingTop: 10,
+    height: 'auto',
+    paddingTop: 5,
     width: 300,
   },
   titleNoBorder: {

@@ -54,15 +54,6 @@ const GET_MOVIE = gql`
         username
       }
       showingAtCount
-      reviews {
-        content
-        stars
-        author {
-          id
-          username
-        }
-        id
-      }
       orderedTickets {
         id
         orderedBy {
@@ -97,6 +88,7 @@ const GET_THEATERS = gql`
         year
         poster
         synopsis
+        rating
       }
       myOrders {
         id
@@ -119,6 +111,7 @@ const GET_LOCATIONS = gql`
         year
         poster
         synopsis
+        rating
       }
     }
   }
@@ -132,6 +125,7 @@ const GET_CATALOG = gql`
       year
       poster
       synopsis
+      rating
     }
   }
 `
@@ -167,6 +161,8 @@ const CURRENT_USER = gql`
             title
             year
             id
+            rating
+            synopsis
           }
         }
       }

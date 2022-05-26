@@ -6,7 +6,6 @@ import { gql, useMutation } from '@apollo/client'
 // import PaymentForm from '../components/PaymentForm'
 
 const PaymentForm = (props) => {
-  // console.log('payment from props: ', props)
   const [cardDetails, setCardDetails] = useState()
 
   const handleSubmit = (e) => {
@@ -53,14 +52,12 @@ const PaymentForm = (props) => {
 }
 
 const PaymentScreen = (props) => {
-  // console.log(props)
   const RETRIEVE_INTENT = gql`
     mutation Mutation($totalPrice: Int!) {
       retrievePaymentIntent(totalPrice: $totalPrice)
     }
   `
 
-  // console.log(props)
   const [email, setEmail] = useState('')
   const { confirmPayment, loading } = useConfirmPayment()
   const [cardDetails, setCardDetails] = useState()

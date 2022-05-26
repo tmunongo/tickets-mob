@@ -12,7 +12,6 @@ import React from 'react'
 import Constants from 'expo-constants'
 
 const CatalogScreen = (props) => {
-  console.log('cata: ', props)
   const { id, other } = props.route.params
   return (
     <View style={styles.container}>

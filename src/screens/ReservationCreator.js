@@ -7,7 +7,6 @@ import ReservationForm from '../components/ReservationForm'
 
 const ReservationCreator = (props) => {
   const params = props.route.params.params
-  //   console.log(props)
   const NEW_RESERVATION = gql`
     mutation newReservation(
       $sessionId: ID!
@@ -51,7 +50,6 @@ const ReservationCreator = (props) => {
   // })
   const [newReservation, { loading, error }] = useMutation(NEW_RESERVATION, {
     onCompleted: (data) => {
-      //   console.log('completed')
       props.navigation.navigate('SessionUpdater', {
         data: data.newReservation,
         params: params,
@@ -59,7 +57,6 @@ const ReservationCreator = (props) => {
     },
   })
   React.useEffect(() => {
-    console.log('using effect')
     newReservation({
       variables: {
         sessionId: params.orderDetails.id,

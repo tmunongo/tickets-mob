@@ -10,17 +10,6 @@ import {
 } from 'react-native'
 import React from 'react'
 
-const cards = [
-  { title: 'Movie 1', posterUrl: require('../assets/bvs.jpg') },
-  { title: 'Movie 2', posterUrl: require('../assets/BladeRunner2049.jpg') },
-  { title: 'Movie 3', posterUrl: require('../assets/dune-haleyturnbull.jpg') },
-  { title: 'Movie 4', posterUrl: require('../assets/interstellar-poster.jpg') },
-  {
-    title: 'Movie 5',
-    posterUrl: require('../assets/watchmen-theatrical-poster-big.jpg'),
-  },
-]
-
 const OFFSET = 45
 const ITEM_WIDTH = Dimensions.get('window').width - OFFSET * 4
 const ITEM_HEIGHT = 350
@@ -73,7 +62,10 @@ export default function CardCarousel(props) {
                   height: ITEM_HEIGHT,
                   flex: 1,
                   marginLeft: index === 0 ? OFFSET : undefined,
-                  marginRight: index === cards.length - 1 ? OFFSET : undefined,
+                  marginRight:
+                    index === props.movies.MovieFeed.movies.length - 1
+                      ? OFFSET
+                      : undefined,
                   opacity: opacity,
                   transform: [{ scale: translate }],
                 }}
