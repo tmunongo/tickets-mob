@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native'
 import React from 'react'
+import Constants from 'expo-constants'
 
 function formatDate(unformatted) {
   const options = {
@@ -21,7 +22,7 @@ function formatDate(unformatted) {
 }
 const ReservationFeed = (props) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <FlatList
         data={props.reservations}
         keyExtractor={({ id }) => id.toString()}
@@ -60,7 +61,7 @@ const ReservationFeed = (props) => {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </ScrollView>
   )
 }
 
@@ -69,14 +70,10 @@ export default ReservationFeed
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'grey',
-    height: Dimensions.get('screen').height - 105,
-    paddingBottom: 20,
+    height: Dimensions.get('screen').height - 140,
   },
   feed: {
     backgroundColor: 'black',
-    borderBottomColor: 'grey',
-    borderBottomWidth: 3,
-    marginBottom: 5,
     overflow: 'hidden',
   },
   item: {

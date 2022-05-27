@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   FlatList,
   StyleSheet,
   Text,
@@ -37,7 +38,8 @@ export default TheaterFeed
 
 const styles = StyleSheet.create({
   feed: {
-    height: 120,
+    backgroundColor: '#03071B',
+    height: Dimensions.get('screen').height - 40,
   },
   header: {
     borderTopColor: 'white',

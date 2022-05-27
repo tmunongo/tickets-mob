@@ -14,7 +14,7 @@ const MyTicketsScreen = (props) => {
     <ScrollView style={styles.container}>
       <Text style={styles.header}>My Tickets 🎟️</Text>
       {props.route.params.reservations.length === 0 ? (
-        <Text>You have no orders yet</Text>
+        <Text>You have no tickets yet</Text>
       ) : (
         <ReservationFeed
           reservations={props.route.params.reservations}

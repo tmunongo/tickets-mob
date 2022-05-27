@@ -86,16 +86,26 @@ const SeatSelector = (props) => {
     <View style={styles.container}>
       <Separator />
       <Text style={styles.heading}>
-        <Text style={{ color: '#AAA642' }}>Movie </Text>{' '}
-        {orderDetails.movie.title} {orderDetails.movie.year}
+        {orderDetails.movie.title}, {orderDetails.movie.year}{' '}
+        <Text
+          style={[
+            styles.rating,
+            {
+              color:
+                orderDetails.movie.rating === 'R'
+                  ? 'darkred'
+                  : orderDetails.movie.rating === 'G'
+                  ? 'lime'
+                  : 'white',
+            },
+          ]}
+        >
+          {orderDetails.movie.rating}
+        </Text>
       </Text>
       <Separator />
-      <Text style={styles.subHeading}>
-        <Text style={{ color: '#AAA642' }}>Location </Text>{' '}
-        {orderDetails.location.fullName}
-      </Text>
+      <Text style={styles.subHeading}>{orderDetails.location.fullName}</Text>
       <Separator />
-      {/* <Text>Location: {orderDetails.location.address}</Text> */}
       <Text style={styles.info}>
         Date: {date} | Time: {orderDetails.screeningTime} | Quality:{' '}
         {orderDetails.quality}
@@ -116,32 +126,18 @@ const SeatSelector = (props) => {
         SCREEN
       </Text>
       <Table borderStyle={{ borderWidth: 2, borderColor: '#10AA15' }}>
-        {/* <Rows data={orderDetails.seatMap} textStyle={styles.text} /> */}
         {orderDetails.seatMap.map((rowData, index) => (
           <TableWrapper key={index} style={styles.row}>
             {rowData.map((cellData, cellIndex) => (
-              // <TouchableOpacity onPress={() => alert('Pressed')}>
               <Cell
                 key={cellIndex}
                 data={cellIndex < 6 ? element(cellData, index) : cellData}
               />
-              // </TouchableOpacity>
             ))}
           </TableWrapper>
         ))}
       </Table>
       <Text>You have selected {mySelected} seat(s).</Text>
-      {/* <SeatMap width={360} height={300} style={{ justifyContent: 'center' }} /> 
-      <FlatList
-        data={orderDetails.seatMap}
-        // keyExtractor={({ seatMap }) => seatMap.toString()}
-        style={styles.feed}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => alert('Pressed' + item)}>
-            <Seat seat={item} />
-          </TouchableOpacity>
-        )}
-      /> */}
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.button}
@@ -165,13 +161,13 @@ export default SeatSelector
 
 const styles = StyleSheet.create({
   button: {
-    flex: 0,
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    width: 280,
     backgroundColor: 'dodgerblue',
     borderRadius: 25,
+    flex: 0,
+    height: 40,
+    justifyContent: 'center',
+    width: 240,
   },
   buttonText: {
     fontFamily: 'monospace',
@@ -210,6 +206,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     padding: 10,
     top: Constants.statusBarHeight,
+    width: 'auto',
   },
   feed: {},
   footer: {
@@ -223,7 +220,7 @@ const styles = StyleSheet.create({
     // borderTopColor: '#10AA15',
     borderRadius: 5,
     borderWidth: 2,
-    color: 'white',
+    color: '#AAA642',
     fontFamily: 'monospace',
     fontWeight: 'bold',
     fontSize: 22,
@@ -247,15 +244,25 @@ const styles = StyleSheet.create({
     marginRight: 10,
     textAlignVertical: 'center',
   },
+  rating: {
+    backgroundColor: 'grey',
+    borderRadius: 4,
+    fontSize: 14,
+    fontWeight: 'bold',
+    height: 20,
+    marginLeft: 5,
+    marginTop: 5,
+    textAlign: 'center',
+    width: 30,
+  },
   row: {
     borderRadius: 5,
     backgroundColor: 'black',
     flexDirection: 'row',
-    padding: 5,
   },
   subHeading: {
     textAlign: 'center',
-    color: 'white',
+    color: '#AAA642',
     fontFamily: 'monospace',
     fontWeight: 'bold',
     fontSize: 18,
@@ -278,6 +285,6 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingTop: 4,
     marginLeft: 5,
-    width: 90,
+    width: 'auto',
   },
 })

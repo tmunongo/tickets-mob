@@ -60,7 +60,7 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   base: {
-    backgroundColor: 'black',
+    backgroundColor: '#03071B',
     top: Constants.statusBarHeight,
   },
   featured: {

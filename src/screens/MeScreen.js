@@ -1,4 +1,5 @@
 import {
+  Alert,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -18,7 +19,9 @@ const MeScreen = (props) => {
   const [refreshing, setRefreshing] = React.useState(false)
 
   const { noUser } = React.useContext(AuthContext)
-  const { data, loading, error, refetch } = useQuery(CURRENT_USER)
+  const { data, loading, error, refetch } = useQuery(CURRENT_USER, {
+    refetchQueries: refetch,
+  })
 
   const signOut = () => {
     SecureStore.deleteItemAsync('userToken')
@@ -27,14 +30,17 @@ const MeScreen = (props) => {
 
   function whoAmI() {
     try {
-      alert(data.currentUser.username)
+      Alert.alert(
+        'User Info',
+        `Username: @${data.currentUser.username}
+      Pending Reservations: ${data.currentUser.reservationsMade.length}`
+      )
     } catch (error) {
       alert(error.message)
     }
   }
   if (loading) return <Loading />
   if (error) console.log(error.message)
-  console.log(data)
   return (
     <ScrollView
       refreshControl={

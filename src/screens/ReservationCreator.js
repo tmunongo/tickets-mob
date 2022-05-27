@@ -1,9 +1,8 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { gql, useMutation } from '@apollo/client'
-import Constants from 'expo-constants'
 import Loading from '../components/Loading'
-import ReservationForm from '../components/ReservationForm'
+import { CURRENT_USER } from '../gql/query'
 
 const ReservationCreator = (props) => {
   const params = props.route.params.params
@@ -24,10 +23,11 @@ const ReservationCreator = (props) => {
         seat
         sessionDetails {
           location {
-            username
+            fullName
           }
           movie {
             title
+            year
           }
           screeningDay
           screeningTime
@@ -40,15 +40,8 @@ const ReservationCreator = (props) => {
     }
   `
 
-  //   React.useEffect(() => {
-  // newReservation({
-  //   variables: {
-  //     sessionId: params.orderDetails.id,
-  //     seat: params.mySeats,
-  //     totalPrice: params.total,
-  //   },
-  // })
   const [newReservation, { loading, error }] = useMutation(NEW_RESERVATION, {
+    refetchQueries: [{ query: CURRENT_USER }, { query: CURRENT_USER }],
     onCompleted: (data) => {
       props.navigation.navigate('SessionUpdater', {
         data: data.newReservation,

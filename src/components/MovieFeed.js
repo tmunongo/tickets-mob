@@ -9,8 +9,7 @@ import {
   View,
 } from 'react-native'
 import React from 'react'
-import Movie from './Movie'
-import { FlipInEasyX } from 'react-native-reanimated'
+import Constants from 'expo-constants'
 
 const MovieFeed = (props) => {
   return (
@@ -71,11 +70,11 @@ export default MovieFeed
 const styles = StyleSheet.create({
   base: {
     justifyContent: 'center',
-    paddingBottom: 20,
+    paddingBottom: Constants.statusBarHeight,
   },
   container: {
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#03071B',
     marginBottom: 5,
   },
   feed: {

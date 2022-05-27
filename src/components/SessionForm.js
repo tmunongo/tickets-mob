@@ -1,8 +1,12 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
 import Constants from 'expo-constants'
 
 const SessionForm = (props) => {
+  useEffect(() => {
+    handleSession()
+  }, [])
+
   const handleSession = () => {
     props.action({
       variables: {
@@ -16,11 +20,8 @@ const SessionForm = (props) => {
   }
   return (
     <View>
-      <Button
-        style={styles.orderButton}
-        title="Tap To Continue"
-        onPress={handleSession}
-      />
+      <ActivityIndicator />
+      <Text style={styles.textLoading}>Session Loading</Text>
     </View>
   )
 }
@@ -31,8 +32,8 @@ const styles = StyleSheet.create({
   container: {
     top: Constants.statusBarHeight,
   },
-  orderButton: {
+  textLoading: {
     justifyContent: 'center',
-    width: 50,
+    textAlign: 'center',
   },
 })

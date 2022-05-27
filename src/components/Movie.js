@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   background: {
-    backgroundColor: '#323333',
+    backgroundColor: '#03071B',
     justifyContent: 'center',
     flex: 1,
     height: Dimensions.get('window').height / 1.8,

@@ -18,7 +18,7 @@ export default function CardCarousel(props) {
   const scrollX = React.useRef(new Animated.Value(0)).current
   return (
     <View
-      style={{ height: ITEM_HEIGHT, height: 370, backgroundColor: 'black' }}
+      style={{ height: ITEM_HEIGHT, height: 370, backgroundColor: '#03071B' }}
     >
       <ScrollView
         horizontal={true}
@@ -94,15 +94,15 @@ const styles = StyleSheet.create({
   //     opacity: opacity,
   //     transform: [{ scale: translate }],
   // },
-  poster: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
   featured: {
     marginTop: 10,
     paddingHorizontal: 0,
     flex: 1,
+  },
+  poster: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   title: {
     color: 'bisque',

@@ -1,9 +1,6 @@
 import { RefreshControl, StyleSheet, Text, ScrollView } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
-import { gql, useQuery } from '@apollo/client'
-import Loading from '../components/Loading'
-import { MY_ORDERS } from '../gql/query'
 import OrderFeed from '../components/OrderFeed'
 
 const MyOrdersScreen = (props) => {

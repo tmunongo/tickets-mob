@@ -213,6 +213,7 @@ const MY_ORDERS = gql`
       toWatch {
         title
         year
+        rating
       }
     }
   }
@@ -243,6 +244,8 @@ const SESSION_CHECK = gql`
       movie {
         title
         id
+        year
+        rating
       }
       screeningDay
       screeningTime

@@ -3,7 +3,6 @@ import React from 'react'
 import Constants from 'expo-constants'
 
 const ReservationForm = (props) => {
-  // console.log('reservation form: ', props)
   const handleReserve = () => {
     props.action({
       variables: {

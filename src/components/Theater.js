@@ -1,14 +1,16 @@
 import { StyleSheet, Text, ScrollView, Image, View } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
+import Separator from './Separator'
 
 const Movie = ({ theater }) => {
   return (
     <ScrollView style={styles.feed}>
-      <Text style={styles.title}>Cinema: {theater.fullName}</Text>
+      <Text style={styles.title}>{theater.fullName}</Text>
+      <Separator />
       <View style={styles.meta}>
-        <Text style={styles.subtitle}>Address: {theater.address}</Text>
-        <Text style={styles.subtitle}>Contact: {theater.phoneNumber}</Text>
+        <Text style={styles.subtitle}>{theater.address}</Text>
+        <Text style={styles.subtitle}>{theater.phoneNumber}</Text>
       </View>
     </ScrollView>
   )
@@ -29,19 +31,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderBottomColor: 'grey',
     borderBottomWidth: 3,
-    marginBottom: 5,
+    borderRadius: 10,
+    shadowColor: 'white',
+    elevation: 5,
+    margin: 5,
     padding: 10,
-    paddingLeft: 3,
-    paddingRight: 3,
+    paddingLeft: 5,
+    paddingRight: 5,
     overflow: 'hidden',
   },
   meta: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   title: {
-    borderColor: 'black',
-    borderTopColor: '#10AA15',
     borderWidth: 2,
     borderRadius: 0,
     color: 'white',
@@ -54,18 +57,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subtitle: {
-    borderColor: 'black',
-    borderTopColor: '#10AA15',
     borderWidth: 2,
-    borderRadius: 0,
+    borderRadius: 5,
     color: 'white',
     fontFamily: 'monospace',
     fontSize: 16,
     flex: 0,
-    marginTop: 5,
+    marginLeft: 10,
     paddingBottom: 5,
     paddingLeft: 6,
     paddingTop: 5,
-    width: 190,
+    width: 'auto',
   },
 })

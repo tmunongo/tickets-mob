@@ -24,11 +24,14 @@ const SessionCreator = (props) => {
         location {
           id
           username
+          fullName
+          address
         }
         movie {
           title
           year
           id
+          rating
         }
         screeningDay
         screeningTime
@@ -49,50 +52,13 @@ const SessionCreator = (props) => {
       })
     },
   })
-
-  //   const sessionReducer = (prevState, action) => {
-  //     switch (action.type) {
-  //       case 'CHECK_SESSION': {
-  //         return {
-  //           ...prevState,
-  //           isLoading: false,
-  //         }
-  //       }
-  //       case 'NEW_SESSION': {
-  //         return {
-  //           ...prevState,
-
-  //           hasSession: true,
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   const [sessionState, dispatch] = React.useReducer(
-  //     sessionReducer,
-  //     initialState
-  //   )
-
-  //   const sessionContext = React.useMemo(() => ({
-  //     checkSession: async () => {
-  //       dispatch({ type: 'CHECK_USER' })
-  //     },
-  //     aSession: async (order) => {
-  //       dospatch({ type: NEW_SESSION })
-  //     },
-  //   }))
   if (error) console.log('error: ', error.message)
   return (
-    // <SessionContext.Provider>
-    // <View>
-    //   <Text>Session Creator!</Text>
-    // </View>
     <SessionForm
       action={retrieveSession}
       params={orderDetails}
       navigation={props.navigation}
     />
-    // </SessionContext.Provider>
   )
 }
 

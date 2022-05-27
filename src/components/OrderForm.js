@@ -75,32 +75,29 @@ const OrderForm = (params) => {
 
   return (
     <View style={styles.container}>
-      {/* <Separator /> */}
-      <Text style={styles.title}>
-        Selected Movie: <Text style={styles.strong}>{params.movie.title}</Text>{' '}
-        <Text
-          style={[
-            styles.rating,
-            {
-              color:
-                params.movie.rating === 'R'
-                  ? 'darkred'
-                  : params.movie.rating === 'G'
-                  ? 'lime'
-                  : 'white',
-            },
-          ]}
-        >
-          {params.movie.rating}
-        </Text>
+      <Text style={styles.strong}>{params.movie.title} </Text>
+      <Text
+        style={[
+          styles.rating,
+          {
+            color:
+              params.movie.rating === 'R'
+                ? 'darkred'
+                : params.movie.rating === 'G'
+                ? 'lime'
+                : 'white',
+          },
+        ]}
+      >
+        {params.movie.rating}
       </Text>
+
       <Separator />
-      <Text style={styles.title}>
-        Showing At 📌:
-        <Text style={styles.strong}>{params.location.fullName}</Text>
-      </Text>
+      {/* <Text style={styles.title}> */}
+      <Text style={styles.strong}>{params.location.fullName}</Text>
+      {/* </Text> */}
       <Separator />
-      <Text style={styles.title}>Screening Times ⏲️ </Text>
+      <Text style={styles.title}>Pick a time ⏲️ </Text>
       <ScrollView
         bounces={false}
         contentContainerStyle={styles.timeScroller}
@@ -126,7 +123,7 @@ const OrderForm = (params) => {
         })}
       </ScrollView>
       <Separator />
-      <Text style={styles.title}>Screening Day 📆 </Text>
+      <Text style={styles.title}>When? 📆 </Text>
       <DatePicker
         borderColor="#10AA15"
         date={date}
@@ -168,12 +165,11 @@ const OrderForm = (params) => {
           )
         })}
       </ScrollView>
-
       <TouchableOpacity
         style={styles.orderButton}
         onPress={(e) => handleSubmit(e)}
       >
-        <Text style={styles.orderButtonText}>Order Ticket</Text>
+        <Text style={styles.orderButtonText}>Confirm Session</Text>
       </TouchableOpacity>
     </View>
   )
@@ -183,18 +179,19 @@ export default OrderForm
 
 const styles = StyleSheet.create({
   button: {
+    backgroundColor: '#0C4404',
     borderColor: '#10AA15',
-    borderWidth: 1,
-    borderRadius: 30,
+    borderWidth: 2,
+    borderRadius: 10,
     padding: 8,
     marginBottom: 5,
     marginLeft: 25,
     marginTop: 5,
   },
   buttonPressed: {
-    backgroundColor: '#196C1B',
+    backgroundColor: '#008080',
     borderWidth: 2,
-    borderRadius: 30,
+    borderRadius: 10,
     marginBottom: 5,
     marginLeft: 15,
     marginTop: 5,
@@ -208,13 +205,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,
-    // borderRadius: 30,
+    elevation: 1,
     marginHorizontal: 15,
+    shadowColor: 'white',
     paddingTop: 10,
   },
   orderButton: {
     alignSelf: 'center',
-    backgroundColor: '#D2691E',
+    backgroundColor: '#008080',
     borderRadius: 10,
     height: 30,
     paddingTop: 5,
@@ -229,19 +227,25 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   rating: {
+    alignSelf: 'center',
     backgroundColor: 'grey',
     borderRadius: 4,
     fontSize: 14,
     fontWeight: 'bold',
     height: 20,
     marginLeft: 5,
+    marginTop: 5,
     textAlign: 'center',
-    width: 20,
+    width: 30,
   },
   strong: {
+    alignSelf: 'center',
     color: 'yellow',
-    fontWeight: 'bold',
+    fontSize: 18,
     fontStyle: 'normal',
+    fontWeight: 'bold',
+    marginLeft: 5,
+    marginRight: 5,
     textTransform: 'capitalize',
   },
   timeScroller: {
@@ -256,6 +260,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     height: 'auto',
     paddingTop: 5,
+    textAlign: 'center',
     width: 300,
   },
   titleNoBorder: {
