@@ -5,7 +5,6 @@ import Constants from 'expo-constants'
 import Separator from '../components/Separator'
 
 const Reservation = (props) => {
-  console.log(props)
   const details = props.route.params.session
   const res = props.route.params.reservation
   const options = {

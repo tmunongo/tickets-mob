@@ -63,6 +63,9 @@ const UserForm = (props) => {
         textContentType="password"
         value={password}
       />
+      <Text style={{ marginBottom: 10 }}>
+        Password must be at least 8 characters long.
+      </Text>
       <TouchableOpacity
         onPress={handleSubmit}
         navigation={props.navigation}

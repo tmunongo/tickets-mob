@@ -23,7 +23,8 @@ const Signup = (props) => {
   })
 
   //   if (loading) return <Loading />
-  if (error) alert(error.message)
+  if (error)
+    alert(error.message + ' - Username or Email may be invalid or taken.')
   return (
     <UserForm
       action={signUp}

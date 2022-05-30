@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderBottomColor: 'white',
     borderBottomWidth: 2,
+    color: 'white',
     flex: 0,
     fontFamily: 'monospace',
     fontSize: 22,

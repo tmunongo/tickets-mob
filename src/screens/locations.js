@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Constants from 'expo-constants'
 import { useQuery } from '@apollo/client'
@@ -30,7 +30,8 @@ const locations = ({ route, navigation }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.message}>
-          This movie is presently not showing at any cinemas in your area
+          Sorry, this movie is presently not showing at any of our registered
+          cinemas
         </Text>
       </View>
     )
@@ -41,10 +42,18 @@ export default locations
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#03071B',
+    height: Dimensions.get('screen').height - 90,
     top: Constants.statusBarHeight,
   },
   message: {
-    justifyContent: 'center',
     alignItems: 'center',
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    marginTop: Math.max(Dimensions.get('screen').height * 0.4),
+    marginLeft: 10,
+    marginRight: 10,
   },
 })

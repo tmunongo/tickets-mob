@@ -64,6 +64,10 @@ const PaymentScreen = (props) => {
 
   const handleSubmit = (e) => {
     // e.PreventDefault()
+    if (props.route.params.total === 0) {
+      alert('Total cannot be 0. Go back and select a seat')
+      return
+    }
     if (!cardDetails?.complete || !email) {
       alert('Please enter complete details')
       return

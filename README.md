@@ -1,6 +1,6 @@
 # Tickets! Please Movie Tickets
 
-![](home_page.gif)
+!["home page"](home_page.gif)
 
 <p>
   <!-- iOS -->
