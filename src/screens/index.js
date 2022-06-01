@@ -195,7 +195,18 @@ export default function Main() {
             <Tab.Screen name="Me" component={Me} />
           </>
         ) : (
-          <AuthStack.Screen name="auth" component={Authentication} />
+          <AuthStack.Screen
+            name="Auth"
+            component={Authentication}
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused, color, size }) => {
+                let iconName
+                if (route.name === 'Auth') iconName = 'lock'
+
+                return <Ionicons name={iconName} size={size} color={color} />
+              },
+            })}
+          />
         )}
       </Tab.Navigator>
     </AuthContext.Provider>

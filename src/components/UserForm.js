@@ -9,12 +9,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import Constants from 'expo-constants'
 
 const UserForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confPassword, setConfPassword] = useState('')
   const [username, setUsername] = useState('')
+
+  function handlePassword() {
+    if (confPassword.length >= password.length && password !== confPassword) {
+      alert('Passwords do not match')
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -56,13 +62,29 @@ const UserForm = (props) => {
       )}
       <Text style={styles.label}>Password</Text>
       <TextInput
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={(text) =>
+          text.length < 8 ? displayError : setPassword(text)
+        }
         placeholder={'Password'}
         secureTextEntry={true}
         style={styles.box}
         textContentType="password"
         value={password}
       />
+      {props.formType === 'signUp' && (
+        <View>
+          <Text style={styles.label}>Confirm Password</Text>
+          <TextInput
+            onChangeText={(text) => setConfPassword(text)}
+            onEndEditing={handlePassword()}
+            placeholder={'Password'}
+            secureTextEntry={true}
+            style={styles.box}
+            textContentType="password"
+            value={confPassword}
+          />
+        </View>
+      )}
       <Text style={{ marginBottom: 10 }}>
         Password must be at least 8 characters long.
       </Text>

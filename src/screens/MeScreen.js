@@ -52,7 +52,7 @@ const MeScreen = (props) => {
       <TouchableOpacity style={styles.button} onPress={whoAmI}>
         <Text style={styles.buttonText}> 👤 Me</Text>
       </TouchableOpacity>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.button}
         onPress={(e) =>
           props.navigation.push('MyOrders', {
@@ -61,7 +61,7 @@ const MeScreen = (props) => {
         }
       >
         <Text style={styles.buttonText}> 🛒 My Orders</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
       <TouchableOpacity
         style={styles.button}
         onPress={(e) =>
