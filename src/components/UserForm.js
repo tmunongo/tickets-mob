@@ -62,9 +62,7 @@ const UserForm = (props) => {
       )}
       <Text style={styles.label}>Password</Text>
       <TextInput
-        onChangeText={(text) =>
-          text.length < 8 ? displayError : setPassword(text)
-        }
+        onChangeText={(text) => setPassword(text)}
         placeholder={'Password'}
         secureTextEntry={true}
         style={styles.box}
