@@ -5,8 +5,6 @@ import Loading from '../components/Loading'
 import { AuthContext } from '../components/Context'
 
 const AuthLoading = (props) => {
-  // const authentication = useAuthentication()
-  // const [isLoading, setisLoading] = React.useState(authentication.isLoading)
   const { checkUser } = React.useContext(AuthContext)
 
   useEffect(() => {
