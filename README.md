@@ -11,7 +11,7 @@
 - [Features](#Features)
 - [Technologies](#Technologies)
 - [Concepts](#Variables)
-- [How to use](#How to use)
+- [How to use](#How-to-use)
 - [Required Variables](#Variables)
 
 ## Features
