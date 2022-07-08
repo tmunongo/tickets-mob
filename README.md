@@ -1,17 +1,18 @@
 # Tickets! Please Movie Tickets
 
 ## Screenshots
-!["home page"](home_page.gif)
+!["home page"](live/home_page.gif)
 
+## API
 [Backend](https://github.com/edtha3rd/tickets-api)
 
 ## Contents
 
 - [Features](#Features)
 - [Technologies](#Technologies)
-- Concepts
-- [How to use](#🚀 How to use)
-- [Required Variables](# Variables)
+- [Concepts](#Variables)
+- [How to use](#How to use)
+- [Required Variables](#Variables)
 
 ## Features
 
@@ -32,7 +33,7 @@ This mobile app allows a user to register an account and view all the available 
   - The user must pick a day, time, and quality.
     - The movie, location, day, time, and quality are the elements that distinguish between different 'sessions'.
   - If the session exists, the user will view its current state including the number of selected seats or a new, empty session will be generated allowing the user to pick their seat.
-  - A user can select a maximum of 2 seats that have not been previously selected. The total cost is shown. [Screenshot](./live/ordering.jpg)
+  - A user can select a maximum of 2 seats that have not been previously selected. The total cost is shown. [Screenshot](live/ordering.jpg)
   - The user can proceed to pay by inputting their card details. Payment is handled by the Stripe API.
   - Once payment is approved, the user's reservation is recorded in the database, and they are presented with a unique verification number that can be used to check their ticket on arrival.
 - Other Features
@@ -40,7 +41,7 @@ This mobile app allows a user to register an account and view all the available 
   - A sticker shows whether the reservation is still valid or not depending on whether the date has passed.
 
 ## Technologies
-** Frontend **
+**Frontend**
 - React Native.
 - React Navigation (routing).
 - React Context (handle app state).
@@ -57,12 +58,12 @@ This mobile app allows a user to register an account and view all the available 
 ## UML Diagram
 
 ## 🚀 How to use
-** Must also have [server](https://github.com/edtha3rd/tickets-api) running.
+**Must also have [server](https://github.com/edtha3rd/tickets-api) running.**
 - Download the .zip file or clone repository.
 - cd to tickets-mob.
 - `npm install` to install packages.
 - Run `expo start` to run the app.
 
 ## Variables
-- API_URI: `http://${localhost}:8080/tickets-api`. ** to run on a mobile device, replace localhost with the host machine IP **
+- API_URI: `http://${localhost}:8080/tickets-api`. **to run on a mobile device, replace localhost with the host machine IP**
 - STRIPE_PUBLISHABLE_KEY.
