@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  Button,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
@@ -119,8 +118,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     borderColor: 'black',
-    borderRadius: 30,
+    borderRadius: 10,
     borderWidth: 2,
+    // boxShadow: ,
     flex: 1,
     justifyContent: 'center',
     margin: 30,
@@ -134,17 +134,16 @@ const styles = StyleSheet.create({
   },
   box: {
     borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 10,
+    borderBottomColor: 'black',
+    borderColor: 'whitesmoke',
     width: 240,
     marginBottom: 10,
     paddingLeft: 10,
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#7FDEDB',
     borderColor: 'black',
-    borderRadius: 30,
+    borderRadius: 10,
     borderWidth: 2,
     height: 30,
     padding: 5,

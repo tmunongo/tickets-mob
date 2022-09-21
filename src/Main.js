@@ -1,20 +1,20 @@
-import { Text, StyleSheet, View } from 'react-native'
-import React, { useEffect } from 'react'
-import Screens from './screens'
 import {
   ApolloClient,
-  InMemoryCache,
   ApolloProvider,
   HttpLink,
+  InMemoryCache,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import * as SecureStore from 'expo-secure-store'
 import { StripeProvider } from '@stripe/stripe-react-native'
+import * as SecureStore from 'expo-secure-store'
+import React from 'react'
+import { StyleSheet } from 'react-native'
 import getEnvVars from '../config'
+import Screens from './screens'
 const { STRIPE_PUBLISHABLE_KEY } = getEnvVars()
 
 const link = new HttpLink({
-  uri: 'http://192.168.0.102:8080/tickets-api',
+  uri: 'http://192.168.1.193:8008/tickets-api',
 })
 
 const authLink = setContext(async (_, { headers }) => {

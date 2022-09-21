@@ -1,14 +1,13 @@
+import React from 'react'
 import {
   Animated,
   Dimensions,
   ImageBackground,
-  Image,
-  View,
-  TouchableOpacity,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from 'react-native'
-import React from 'react'
 
 const OFFSET = 45
 const ITEM_WIDTH = Dimensions.get('window').width - OFFSET * 4
@@ -17,9 +16,7 @@ const ITEM_HEIGHT = 350
 export default function CardCarousel(props) {
   const scrollX = React.useRef(new Animated.Value(0)).current
   return (
-    <View
-      style={{ height: ITEM_HEIGHT, height: 370, backgroundColor: '#03071B' }}
-    >
+    <View style={{ height: ITEM_HEIGHT, height: 370 }}>
       <ScrollView
         horizontal={true}
         decelerationRate={'normal'}

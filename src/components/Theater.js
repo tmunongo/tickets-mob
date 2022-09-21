@@ -1,6 +1,6 @@
-import { StyleSheet, Text, ScrollView, Image, View } from 'react-native'
-import React from 'react'
 import Constants from 'expo-constants'
+import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import Separator from './Separator'
 
 const Movie = ({ theater }) => {
@@ -28,11 +28,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   feed: {
-    backgroundColor: 'black',
+    backgroundColor: 'whitesmoke',
     borderBottomColor: 'grey',
-    borderBottomWidth: 3,
-    borderRadius: 10,
-    shadowColor: 'white',
+    borderRadius: 20,
     elevation: 5,
     margin: 5,
     padding: 10,
@@ -45,9 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   title: {
-    borderWidth: 2,
-    borderRadius: 0,
-    color: 'white',
+    color: 'black',
     fontFamily: 'monospace',
     fontSize: 20,
     paddingBottom: 5,
@@ -57,9 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subtitle: {
-    borderWidth: 2,
-    borderRadius: 5,
-    color: 'white',
+    color: 'black',
     fontFamily: 'monospace',
     fontSize: 16,
     flex: 0,

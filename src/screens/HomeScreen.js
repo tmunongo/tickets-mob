@@ -1,20 +1,19 @@
 import { useQuery } from '@apollo/client'
+import Constants from 'expo-constants'
 import React from 'react'
 import {
-  Image,
   RefreshControl,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native'
 import CardCarousel from '../components/CardCarousel'
-import MovieFeed from '../components/MovieFeed'
-import { GET_MOVIES } from '../gql/query'
 import Loading from '../components/Loading'
-import Constants from 'expo-constants'
+import MovieFeed from '../components/MovieFeed'
 import Separator from '../components/Separator'
+import { GET_MOVIES } from '../gql/query'
 
 const HomeScreen = (props) => {
   const [search, setSearch] = React.useState('')
@@ -60,7 +59,7 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
   base: {
-    backgroundColor: '#03071B',
+    // backgroundColor: '#03071B',
     top: Constants.statusBarHeight,
   },
   featured: {
@@ -77,14 +76,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   search: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
     height: 50,
-    backgroundColor: 'white',
   },
   searchBar: {
-    borderRadius: 10,
-    height: 60,
-    marginLeft: 40,
-    marginRight: 40,
+    height: 40,
+    marginHorizontal: 10,
     paddingLeft: 10,
   },
   text: {

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Dimensions,
   FlatList,
@@ -6,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
 import Theater from './Theater'
 
 const TheaterFeed = (props) => {
@@ -38,7 +38,7 @@ export default TheaterFeed
 
 const styles = StyleSheet.create({
   feed: {
-    backgroundColor: '#03071B',
+    // backgroundColor: '#03071B',
     height: Dimensions.get('screen').height - 40,
   },
   header: {

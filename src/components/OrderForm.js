@@ -1,15 +1,14 @@
+import { Entypo } from '@expo/vector-icons'
+import DatePicker from 'expo-datepicker'
+import React, { useState } from 'react'
 import {
-  Button,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native'
-import React, { useState } from 'react'
 import Separator from './Separator'
-import DatePicker from 'expo-datepicker'
-import { Entypo } from '@expo/vector-icons'
 
 const times = [
   { time: '14:15' },
@@ -240,7 +239,7 @@ const styles = StyleSheet.create({
   },
   strong: {
     alignSelf: 'center',
-    color: 'yellow',
+    color: 'white',
     fontSize: 18,
     fontStyle: 'normal',
     fontWeight: 'bold',

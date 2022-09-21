@@ -1,15 +1,14 @@
+import Constants from 'expo-constants'
+import React from 'react'
 import {
-  Dimensions,
   FlatList,
   Image,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native'
-import React from 'react'
-import Constants from 'expo-constants'
 
 const MovieFeed = (props) => {
   return (
@@ -34,7 +33,8 @@ const MovieFeed = (props) => {
               <View style={styles.title}>
                 <Text
                   style={{
-                    color: 'white',
+                    color: 'black',
+                    overflow: 'hidden',
                     textAlign: 'center',
                     width: 80,
                   }}
@@ -69,16 +69,18 @@ export default MovieFeed
 
 const styles = StyleSheet.create({
   base: {
+    alignItems: 'center',
+    display: 'flex',
     justifyContent: 'center',
     paddingBottom: Constants.statusBarHeight,
   },
   container: {
-    alignItems: 'center',
-    backgroundColor: '#03071B',
+    // backgroundColor: '#03071B',
+    // justifyContent: 'center',
     marginBottom: 5,
   },
   feed: {
-    height: 200,
+    height: 260,
     display: 'flex',
   },
   poster: {
